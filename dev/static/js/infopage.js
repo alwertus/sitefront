@@ -9,7 +9,9 @@ $(".content-menu-list li").click(function(element) {
         success:function(serverData)//Если запрос удачен
         {
             console.log("ОТВЕТ ОТ СЕРВЕРА: УДАЧА (" + serverData.serverInfo + ")");
+            $(".content-info").hide(200);
             $(".content-info").html(serverData.serverInfo);
+            $(".content-info").show(200);
 
             // $("#auth-info").css({"background-color":serverData.backgroundColor, "height": "50px", "color":"white"});
             // $("#auth-info").html(serverData.serverInfo);

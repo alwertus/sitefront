@@ -1,0 +1,13 @@
+.header {
+  border: 1px solid black;
+  padding: 10px;
+}
+.header_list_pages a:visited, .header_list_pages a{
+  color: black;
+}
+.header_list_pages {
+  display: flex;
+}
+.header_list_pages .link {
+  margin: 10px;
+}

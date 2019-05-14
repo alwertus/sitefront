@@ -34,8 +34,9 @@ $.gulp.task('build', $.gulp.series(
         'styles:build-min',
         'img:build',
         'libsJS:build',
-        'js:build-min',
-        'svg'
+        'js:build',
+        'svg',
+        'clean:copybuild'
     ),
     'copybuild'
 ));

@@ -1,0 +1,16 @@
+extends template/main
+
+block variables
+    - var title = 'Информация'
+    - var pageClass = 'index-page'
+
+block content
+    .content-menu
+        ul(class='content-menu-list')
+            li(name='nam1') info1
+            li(name='nam2') info2
+            li(name='nam3') info3
+    .content-info
+        p Тудом сюдом контент на странице информации
+block script
+    script(src="static/js/infopage.js")

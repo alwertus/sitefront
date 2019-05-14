@@ -46,7 +46,11 @@ button { outline: none; }
   height: 100%;
 }
 
-.content { flex: 1 0 auto; }
+.content {
+  display: flex;
+  flex: 1 0 auto;
+  border: 1px solid green;
+}
 
 .container {
   margin: 0 auto;

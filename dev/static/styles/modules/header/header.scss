@@ -1,6 +1,5 @@
 .header {
   border: 1px solid black;
-  padding: 10px;
 }
 .header_list_pages a:visited, .header_list_pages a{
   color: black;
@@ -10,4 +9,22 @@
 }
 .header_list_pages .link {
   margin: 10px;
+}
+.header-menu {
+  background-color: #9cb2f4;
+  padding-left: 6px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+.header-title {
+  padding-left: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  text-align: center;
+  background: linear-gradient(0deg, #C5DDE8, #9cb2f4);
+  border-top: 2px solid #b2bbda;
+}
+.header-menu .link {
+  text-shadow: 0px 0px 4px #ffe000;
+  font-weight: bold;
 }

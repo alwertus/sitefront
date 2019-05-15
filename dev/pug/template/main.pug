@@ -19,7 +19,9 @@ html(lang="ru-RU")
 	body(class=pageClass)
 		.container
 			.wrapper
-				include ../modules/header/header
+				.header
+					include ../modules/header/header-menu
+					include ../modules/header/header-title
 				.content
 					block content
 				include ../modules/footer/footer

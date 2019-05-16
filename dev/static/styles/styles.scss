@@ -8,7 +8,10 @@ html {
   height: 100%;
 }
 
-body { height: 100%; }
+body {
+  height: 100%;
+  background-color: black;
+}
 
 h1, h2, h3, h4, h5, h6 { margin: 0; }
 
@@ -49,7 +52,8 @@ button { outline: none; }
 .content {
   display: flex;
   flex: 1 0 auto;
-  border: 1px solid green;
+  //border: 1px solid green;
+  background-color: #C5DDE8;
 }
 
 .container {

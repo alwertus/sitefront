@@ -5,7 +5,7 @@ $(".content-menu-list li").click(function(element) {
     $.ajax({
         type: "POST",//Метод передачи
         data: data,//Передаваемые данные в JSON - формате
-        url: 'AuthServlet',//Название сервлета
+        url: 'InfoPageServlet',//Название сервлета
         success:function(serverData)//Если запрос удачен
         {
             console.log("ОТВЕТ ОТ СЕРВЕРА: УДАЧА (" + serverData.serverInfo + ")");

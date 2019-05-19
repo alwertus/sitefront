@@ -2,10 +2,13 @@ extends template/main
 
 block variables
     - var title = 'Информация'
-    - var pageClass = 'index-page'
+    - var pageClass = 'info-page'
+    - var h1_title = 'Хранилище'
 
 block content
     .content-menu
+        include modules/navigation/content-menu-nav
+
         ul(class='content-menu-list')
             li(name='Общая инфа') Общая информация
             li(name='ссылка 2') info2
@@ -14,5 +17,6 @@ block content
             li(name='GET_MENU_ITEMS') Показать всё
     .content-info
         p Тудом сюдом контент на странице информации
+    include modules/dialogs/add-info/content-add-info-window
 block script
     script(src="static/js/infopage.js")

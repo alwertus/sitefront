@@ -29,23 +29,22 @@ $('#btn-ok').click(function () {
     sendPageToServer();
     $('#btn-cancel').trigger('click');
     refreshMenuItems();
-    console.log("refresh 0");
 });
-
-
 
 //-----------------------------
 
 function sendPageToServer() {
     console.log('ajax на сервер добавление страницы');
     var data = {
-        "operation" : "append",
-        "title" : $("#text-title").val(),
-        "page" : $("#text-content").val()
+
     };
     $.ajax({
         type: 'POST',
-        data: data,
+        data: {
+            "operation" : "append",
+            "title" : $("#text-title").val(),
+            "page" : $("#text-content").val()
+        },
         url: 'InfoPageServlet',
         succes: function(serverData) {      // удачный запрос
             var response = serverData.serverInfo;
@@ -53,31 +52,24 @@ function sendPageToServer() {
         },
         error: function(e) {                // ошибка
             console.log("Ошибка обращения к серверу");
-
         }
     });
 }
 
 // обновление списка меню с сервера
-// 1 2 5 0 3x15 4
 function refreshMenuItems() {
-    var data = {
-        "operation" : "get_menu_items",
-        "element" : "-"
-    };
-    var menu = $(".content-menu-list");
-
-    console.log("refresh 1");
-    menu.empty();
-    console.log("refresh 2");
     $.ajax({
         type: "POST",
-        data: data,
+        data: {
+            "operation" : "get_menu_items",
+            "element" : "-"
+        },
         url: 'InfoPageServlet',
         success: function(serverData) {      // удачный запрос
+            var menu = $(".content-menu-list");
+            menu.empty();
             var linkArr = serverData.serverInfo.split("~");
             linkArr.forEach(function(element) {
-                console.log("refresh 3");
                 var linkArr = element.split(":");
                 if (linkArr[1] == null) {   // если это категория
 
@@ -88,14 +80,12 @@ function refreshMenuItems() {
                 }
 
             });
-            console.log("refresh 4");
             setOnClickElements();
         },
         error: function(e) {                // не очень удачный запрос
             menu.append("Ошибка получения списка меню");
         }
     });
-    console.log("refresh 5");
 }
 
 // установка событий по клику на пункты меню

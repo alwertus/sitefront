@@ -8,9 +8,12 @@
                     input(id='btn-cancel' type='button' value='X')
             .content-add-info-window-content-top-line2
                 .content-add-info-window-content-top-line2-input
-                    input(id='text-title' type='text')
+                    input(id='text-title' class='input-text' type='text')
         .content-add-info-window-content-center
             p А тут текст
-            input(id='text-content' type='area')
+            textarea(id='text-content' class='input-text')
         .content-add-info-window-content-down
-            input(id='btn-ok' type='button' value='OK')
+            .content-add-info-window-content-down-errormsg
+                p Ошибка! Заполнены не все поля
+            .content-add-info-window-content-down-btnok
+                input(id='btn-ok' type='button' value='OK')

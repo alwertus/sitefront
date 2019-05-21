@@ -34,10 +34,6 @@ $('#btn-ok').click(function () {
 //-----------------------------
 
 function sendPageToServer() {
-    console.log('ajax на сервер добавление страницы');
-    var data = {
-
-    };
     $.ajax({
         type: 'POST',
         data: {
@@ -72,7 +68,9 @@ function refreshMenuItems() {
             linkArr.forEach(function(element) {
                 var linkArr = element.split(":");
                 if (linkArr[1] == null) {   // если это категория
-
+                    $("<ul>", {
+                        class: linkArr[0]
+                    }).html(linkArr[0]).appendTo(menu);
                 } else {                    // если это элемент
                     $("<li>", {
                         name: linkArr[0]

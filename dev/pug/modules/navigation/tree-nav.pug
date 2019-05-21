@@ -1,9 +1,54 @@
-.tree
+.tree mytree
     ul.t-container
-        li.t-node.t-isRoot.t-expandOpen
-            .t-expand
-            .t-content Root
+        li.t-node t-isRoot t-expandOpen
+            .t-Expand
+            input(type="checkbox")
+            .t-ContentItem 1
             ul.t-container
-                li.t-node.t-expandLeaf
-                    .t-expand
-                    .t-content Item 1
+                li.t-node t-expandOpen
+                    .t-Expand
+                    input(type="checkbox")
+                    .t-ContentItem 1.1
+                    ul.t-container
+                        li.t-node t-expandLeaf t-isLast
+                            .t-Expand
+                            input(type="checkbox")
+                            .t-ContentItem 1.1.2
+                li.t-node t-expandLeaf t-isLast
+                    .t-Expand
+                    input(type="checkbox")
+                    .t-ContentItem 1.2
+        li.t-node t-isRoot t-expandOpen
+            .t-Expand
+            input(type="checkbox")
+            .t-ContentItem 2<br/>title long yeah
+            ul.t-container
+                li.t-node t-expandLeaf t-isLast
+                    .t-Expand
+                    input(type="checkbox")
+                    .t-ContentItem 2.1
+        li.t-node t-expandOpen t-isRoot t-isLast
+            .t-Expand
+            input(type="checkbox")
+            .t-ContentItem 3
+            ul.t-container
+                li.t-node t-expandLeaf t-isLast
+                    .t-Expand
+                    input(type="checkbox")
+                    .t-ContentItem 3.1
+    //ul.t-container
+    //    li.t-node.t-isRoot.t-expandOpen
+    //        .t-expand
+    //        .t-content Root
+    //        ul.t-container
+    //            li.t-node.t-expandOpen
+    //                .t-expand
+    //                .t-content Item 1
+    //                ul.t-container
+    //                    li.t-node.t-expandLeaf.t-isLast
+    //                        .t-expand
+    //                        .t-content Item 1.1
+    //                        ul.t-container
+    //            li.t-node.t-expandLeaf.t-isLast
+    //                .t-expand
+    //                .t-content Item 2

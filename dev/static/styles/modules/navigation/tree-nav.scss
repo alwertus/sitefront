@@ -1,9 +1,12 @@
-/*
-|-----------------------------------------------------
-| Expand |
-
-
- */
+/*  |----------------------------------|
+    | Expand | Content                 |
+    |----------------------------------|
+    |           Container              |
+    ||================================||
+    ||        | Expand | Content      ||
+    ||--------------------------------||
+    ||        | Expand | Content      ||
+    ||================================||  */
 .t-container {  // контейнер просто содержит узлы. Сам узел будет содержать свои отступы
   padding: 0;
   margin: 0;
@@ -26,6 +29,43 @@
   height: 18px;
   float: left;
 }
-.t-content {
+.t-content {          // содержание (заголовок) узла
+  margin-left: 18px;   // чтобы не залезть на Expand
+  min-height: 18px;   // высота заголовка минимум равна expand. иначе нижний float будет пытаться разместиться на получившейся ступеньке
+}
+// ------------------- структура готова далее иконки ----------------------
+.t-node {             // узел Node поддерживает вертикальную линию к следующему соседу
+  margin-left: 18px;
+  zoom: 1;
+  background-image: $img-static-content-tree-i;
+  background-position: top left;
+  background-repeat: repeat-y;
+}
+.t-isLast {           // Если соседа ниже нет - линию продолжать не надо
+  // добавить соеденительную точку наверх
+  background-image: $img-static-content-tree-i_half;
+  background-repeat: no-repeat;
+}
+.t-expandOpen .t-expand {
+  background-image: $img-static-content-tree-expand_minus;
+}
+.t-expandClosed .t-expand {
+  background-image: $img-static-content-tree-expand_plus;
+}
+.t-expandLeaf .t-expand {
+  background-image: $img-static-content-tree-expand_leaf;
+}
 
+// -------------------- скрытие / раскрытие
+.t-expandOpen .t-container {
+  display: block;
+}
+.t-expandClosed .t-container {
+  display: none;
+}
+.t-expandOpen .t-expand, .t-expandClosed .t-expand {
+  cursor: pointer;
+}
+.t-expandLeaf .t-expand {
+  cursor: auto;
 }

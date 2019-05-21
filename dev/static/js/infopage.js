@@ -62,22 +62,26 @@ function refreshMenuItems() {
         },
         url: 'InfoPageServlet',
         success: function(serverData) {      // удачный запрос
-            var menu = $(".content-menu-list");
-            menu.empty();
-            var linkArr = serverData.serverInfo.split("~");
-            linkArr.forEach(function(element) {
-                var linkArr = element.split(":");
-                if (linkArr[1] == null) {   // если это категория
-                    $("<ul>", {
-                        class: linkArr[0]
-                    }).html(linkArr[0]).appendTo(menu);
-                } else {                    // если это элемент
-                    $("<li>", {
-                        name: linkArr[0]
-                    }).html(linkArr[1]).appendTo(menu);
-                }
 
-            });
+            var menu = $(".content-menu-list");
+            var recordCount = serverData["serverInfo"].split(":")[1];
+
+            for (let i = 0; i < recordCount; i++) {
+                if (serverData["category_flag" + i] == "1")
+                    $("<p>", {class: "ul-title"}).html(serverData["title" + i]).appendTo(
+                    $("<ul>", {
+                        id: serverData["title" + i]
+                    }).appendTo(menu));
+            }
+            for (let i = 0; i <recordCount ; i++) {
+                if (serverData["category_flag" + i] == "0") {
+                    var parent = serverData["parent" + i];
+                    $("<li>", {
+                        name: serverData["title" + i]
+                    }).html(serverData["link_text" + i]).appendTo(parent.length > 0 ? $("#" + parent) : menu);
+                }
+            }
+
             setOnClickElements();
         },
         error: function(e) {                // не очень удачный запрос
@@ -88,6 +92,12 @@ function refreshMenuItems() {
 
 // установка событий по клику на пункты меню
 function setOnClickElements() {
+    $(".ul-title").click(function(element) {
+        if (element.target.parentElement.hasAttribute('class'))
+            element.target.parentElement.removeAttribute("class");
+        else
+            element.target.parentElement.className="hide";
+    });
     $(".content-menu-list li").click(function(element) {
         var elemName = element.target.getAttribute("name");
         var data = {

@@ -3,20 +3,23 @@ extends template/main
 block variables
     - var title = 'English'
     - var pageClass = 'english-page'
-    - var h1_title = 'Учим английский'
+    // - var h1_title = 'Учим английский'
 
 block content
     .english
-        .choise_action
-            form(name='action-name')
-                input(type='radio' name='action' value='add-phrase')
-                p Добавить фразу
-                input(type='radio' name='action' value='add-word')
-                p Добавить слово
-        .add_phrase
-            form(name='add-phrase' method='post' action='input.html')
-                h3 Добавление фразы
-                p Введи фразу на английском
-                input(name='english' type='text')
-                p Введи перевод
-                input(name='russian' type='text')
+        include  modules/navigation/tree-nav
+
+
+    //.choise_action
+        //    form(name='action-name')
+        //        input(type='radio' name='action' value='add-phrase')
+        //        p Добавить фразу
+        //        input(type='radio' name='action' value='add-word')
+        //        p Добавить слово
+        //.add_phrase
+        //    form(name='add-phrase' method='post' action='input.html')
+        //        h3 Добавление фразы
+        //        p Введи фразу на английском
+        //        input(name='english' type='text')
+        //        p Введи перевод
+        //        input(name='russian' type='text')

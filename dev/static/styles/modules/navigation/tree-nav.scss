@@ -7,65 +7,95 @@
     ||--------------------------------||
     ||        | Expand | Content      ||
     ||================================||  */
-.t-container {  // контейнер просто содержит узлы. Сам узел будет содержать свои отступы
-  padding: 0;
-  margin: 0;
+ul { // не было в примере
+  list-style-type: none;
 }
-.t-container li {
-  list-style-type: none; // убрать кружочки/точечки
-}
-.t-node {
-  margin-left: 18px;  // отступ от левой части контейнера (для составления иерархии)
-  zoom: 1;            // спецсвойство против багов IE 6, 7
-}
-.t-isRoot {
-  margin-left: 0;     // корневой элемент без отступа
-}
-/*  принцип двухколоночной вёрстки
-    float:left и width дива Expand + margin-left дива Content  */
 
-.t-expand {           // колонка с иконкой
-  width: 18px;
-  height: 18px;
-  float: left;
+.tree-root {
+  padding-left: 0;
 }
-.t-content {          // содержание (заголовок) узла
-  margin-left: 18px;   // чтобы не залезть на Expand
-  min-height: 18px;   // высота заголовка минимум равна expand. иначе нижний float будет пытаться разместиться на получившейся ступеньке
+.tree-container {
+  padding: 0;
+  //margin: 0;
+
+  li {
+    list-style-type: none;
+  }
 }
-// ------------------- структура готова далее иконки ----------------------
-.t-node {             // узел Node поддерживает вертикальную линию к следующему соседу
-  margin-left: 18px;
-  zoom: 1;
-  background-image: $img-static-content-tree-i;
-  background-position: top left;
-  background-repeat: repeat-y;
+.tree-node {
+  background-image: $img-tree-i;  // картинка-палка
+  background-position: top left;  // ничего от этого не меняется (вроде)
+  background-repeat: repeat-y;    // повторяется только по вертикали
+  margin-left: 18px;              // отступ для дочерних
+  zoom: 1;                        // баг IE6
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
-.t-isLast {           // Если соседа ниже нет - линию продолжать не надо
-  // добавить соеденительную точку наверх
-  background-image: $img-static-content-tree-i_half;
+.isRoot {
+  margin-left: 0;                 // если корень - нет отступа
+}
+.isLast {
+  background-image: $img-tree-i_half; // если дочерних больше нет - меняем картинку на палку-покороче снизу
   background-repeat: no-repeat;
 }
-.t-expandOpen .t-expand {
-  background-image: $img-static-content-tree-expand_minus;
+.expandOpen {                     // узел открыт: картинка -> минус, курсор -> палец, показываем содержимое
+  .tree-expand {
+    background-image: $img-tree-expand_minus;
+    cursor: pointer;
+  }
+  .tree-container {
+    display: block;
+  }
 }
-.t-expandClosed .t-expand {
-  background-image: $img-static-content-tree-expand_plus;
+.expandClosed {                     // узел закрыт: картинка -> плюс, курсор -> палец, скрываем содержимое
+  .tree-expand {
+    background-image: $img-tree-expand_plus;
+    cursor: pointer;
+  }
+  .tree-container {
+    display: none;
+  }
 }
-.t-expandLeaf .t-expand {
-  background-image: $img-static-content-tree-expand_leaf;
+.isLast {                     // узел угловой: картинка -> угол, курсор -> обычный
+  .tree-expand {
+    background-image: $img-tree-expand_leaf;
+    cursor: auto;
+  }
 }
+.tree-content {                   // стиль надписи узла дерева
+  min-height: 18px;               // не влияет
+  margin-left: 4px;               // отступ, чтоб не накладывались линии на текст
+}
+// нечто непонятное. отключил
+//* html  .tree-content {
+//  height: 18px;
+//}
 
-// -------------------- скрытие / раскрытие
-.t-expandOpen .t-container {
-  display: block;
+// если делать иконку загрузки
+//.ExpandLoading   {
+//  width: 18px;
+//  height: 18px;
+//  float: left;
+//  background-image: url(img/expand_loading.gif);
+//}
+
+.tree-expand {                    // параметры картинкт + или -
+  width: 18px;                    // без этих отступов картинки не видно
+  height: 18px;                   // без этих отступов картинки не видно
+  float: left;                    // чтоб картинка отображалась на той же строке, что и подпись
 }
-.t-expandClosed .t-container {
+.tree-radio {
+  float: left;
+  margin-top: 3px;
   display: none;
 }
-.t-expandOpen .t-expand, .t-expandClosed .t-expand {
-  cursor: pointer;
+.tree-radio:checked + label {
+  background-color: #61f52e;
 }
-.t-expandLeaf .t-expand {
-  cursor: auto;
+.tree-content-label {
+  border: 1px solid #9eb58f;
+  border-radius: 6px;
+  background-color: #9eb58f;
+  padding-left: 5px;
+  padding-right: 5px;
 }

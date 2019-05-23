@@ -7,17 +7,9 @@
     ||--------------------------------||
     ||        | Expand | Content      ||
     ||================================||  */
-ul { // не было в примере
-  list-style-type: none;
-}
-
-.tree-root {
-  padding-left: 0;
-}
 .tree-container {
   padding: 0;
-  //margin: 0;
-
+  margin: 0;
   li {
     list-style-type: none;
   }
@@ -32,58 +24,46 @@ ul { // не было в примере
   margin-bottom: 2px;
 }
 .isRoot {
-  margin-left: 0;                 // если корень - нет отступа
+  margin-left: 0;
 }
 .isLast {
-  background-image: $img-tree-i_half; // если дочерних больше нет - меняем картинку на палку-покороче снизу
+  background-image: $img-tree-i_half;             // если дочерних больше нет - меняем картинку на палку-покороче снизу
   background-repeat: no-repeat;
 }
-.expandOpen {                     // узел открыт: картинка -> минус, курсор -> палец, показываем содержимое
-  .tree-expand {
+.expandOpen .tree-expand {                        // узел открыт: картинка -> минус, курсор -> палец, показываем содержимое
     background-image: $img-tree-expand_minus;
-    cursor: pointer;
-  }
-  .tree-container {
-    display: block;
-  }
 }
-.expandClosed {                     // узел закрыт: картинка -> плюс, курсор -> палец, скрываем содержимое
-  .tree-expand {
-    background-image: $img-tree-expand_plus;
-    cursor: pointer;
-  }
-  .tree-container {
-    display: none;
-  }
+.expandClosed .tree-expand {                      // узел закрыт: картинка -> плюс, курсор -> палец, скрываем содержимое
+  background-image: $img-tree-expand_plus;
 }
-.isLast {                     // узел угловой: картинка -> угол, курсор -> обычный
-  .tree-expand {
+.expandLeaf .tree-expand {                        // наивысший приоритет
     background-image: $img-tree-expand_leaf;
-    cursor: auto;
-  }
 }
 .tree-content {                   // стиль надписи узла дерева
   min-height: 18px;               // не влияет
   margin-left: 4px;               // отступ, чтоб не накладывались линии на текст
 }
-// нечто непонятное. отключил
-//* html  .tree-content {
-//  height: 18px;
-//}
-
-// если делать иконку загрузки
-//.ExpandLoading   {
-//  width: 18px;
-//  height: 18px;
-//  float: left;
-//  background-image: url(img/expand_loading.gif);
-//}
-
+* html  .tree-content {           // нечто непонятное
+  height: 18px;
+}
 .tree-expand {                    // параметры картинкт + или -
   width: 18px;                    // без этих отступов картинки не видно
   height: 18px;                   // без этих отступов картинки не видно
   float: left;                    // чтоб картинка отображалась на той же строке, что и подпись
 }
+.expandOpen .tree-container {
+  display: block;
+}
+.expandClosed .tree-container {
+  display: none;
+}
+expandOpen .tree-expand, expandClosed .tree-expand {
+  cursor: pointer;
+}
+expandLeaf .tree-expand {
+  cursor: auto;
+}
+
 .tree-radio {
   float: left;
   margin-top: 3px;

@@ -1,3 +1,8 @@
 .content-menu-nav
-    input(type='button' value='Добавить страничку' id='add-info')
-include  tree-nav
+    //input(type='button' value='Добавить страничку' id='add-info')
+    a(class='menu-button' href='#' id='add-info') Add
+    a(class='menu-button' href='#' id='edit-info') Edit
+    a(class='menu-button' href='#' id='del-info') Del
+.tree
+    p.tree-root-label Корень
+    include  tree-nav

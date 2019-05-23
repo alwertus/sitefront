@@ -1,5 +1,6 @@
 $(document).ready(function(){
     refreshMenuItems();
+
 });
 
 $('#add-info').click(function () {

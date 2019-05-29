@@ -1,55 +1,116 @@
+var
+    winAdd              = $('.content-add-info-window'),
+    winAdd_content      = $(".content-add-info-window-content"),
+    winAdd_errorMsg     = $(".content-add-info-window-content-down-errormsg"),
+    winAdd_titleText    = $('.content-add-info-window-content-top-line2 #text-title'),
+    winEdit             = $('.dialog-edit__background'),
+    winEdit_titleText   = $('#dialog-edit__title'),
+    winEdit_contentText = $('#dialog-edit__content'),
+    winEdit_errorMsg    = $('.dialog-edit__footer-errormsg');
+
+// ===== ===== ===== ===== ===== ===== ===== ===== СОБЫТИЯ ===== ===== ===== ===== ===== ===== ===== =====
+
+// "конструктор"
 $(document).ready(function(){
-    getContainer("0").empty();
-    refreshTreeRecords("0");
+    getContainer("0").empty();  // очищаем содержимое дерева
+    refreshTreeRecords("0");    // обновляем дерево в корне
 });
+
+// кнопка отмена окна добавления / редактирования страницы
 $('#btn-cancel').click(function () { closeAddPageWindow(); }); // клик на ЗАКРЫТЬ на окне добавления страницы
+$('#dialog-edit__btn-cancel').click(function () { close_winEdit(); }); // клик на ЗАКРЫТЬ на окне добавления страницы
+
+// кнопка добавления
 $('#add-info').click(function () {                             // открыть окно добавления страницы
-    showAddPageWindow();
-    $(".content-add-info-window-content").attr("id","append_page");
+    show_winAdd();
+    winAdd_content.attr("id","append_page");
 });
+
+// кнопка редактирования
 $('#edit-info').click(function () {                            // открыть окно добавления страницы
-    showAddPageWindow()
-    $("#text-title").val("123");
-    // установка текста
-    $("#text-content").val($('.content-info').outerHTML);
-
-    $(".content-add-info-window-content").attr("id","edit_page");
+    var radioChecked = $('input[name=tree-radio]:checked');
+    var sTitle = radioChecked.siblings("label").html();
+    var sId = radioChecked.parent().parent().attr("id");
+    var sContent = $('.content-info').html();
+    show_winEdit();
+    winEdit_titleText.val(sTitle);
+    winEdit_contentText.html(sContent);
+    //winEdit.attr("id","edit_page");
+    winEdit.attr("id",sId);
 });
 
+// клик по надписи корня дерева
 $('.tree-root-label').click(function () {
     $('input[name=tree-radio]:checked').prop('checked', false);
 });
 
-// закрыть окно добавления страницы
-function closeAddPageWindow() {
-    $('.content-add-info-window').hide(200);
-    $('#text-title,#text-content').val('');
-    $(".content-add-info-window-content-down-errormsg").hide();
-}
-
-// показать окно добавления страницы
-function showAddPageWindow() {
-    $('.content-add-info-window').show(200);
-    $('.content-add-info-window-content-top-line2 #text-title').focus();
-}
-
 // клик на ОК на окне добавления страницы
 $('#btn-ok').click(function () {
     if (($.trim($("#text-content").val())).length == 0 || ($.trim($("#text-title").val())).length == 0) {
-        // показываем сообщение об ошибке, затем устанавливаем событие при наборе текста, чтоб это сообщение скрыть
-        $(".content-add-info-window-content-down-errormsg").show(100);
+        // показываем сообщение об ошибке,
+        // затем устанавливаем событие скрытия сообщения об ошибке при наборе текста
+        winAdd_errorMsg.show(100);
         $("#text-content, #text-title").keypress(function (e) {
-            $(".content-add-info-window-content-down-errormsg").hide();
+            winAdd_errorMsg.hide();
             // отключаем событие при первом вызове
             $("#text-content, #text-title").off('keypress');
         });
         return;
     }
-    sendPageToServer($(".content-add-info-window-content").attr("id"));
+    sendPageToServer(winAdd_content.attr("id"));
     closeAddPageWindow();
     var checkedElementID = ($('input[name=tree-radio]:checked').parent()).parent().attr("id");
     refreshTreeRecords(checkedElementID);
 });
+
+// свернуть/развернуть дерево
+$(".tree").click(function (event) {
+    event = event || window.event;                                          // для кроссбраузерности
+    var clickedElement = $(event.target || event.srcElement);
+    var parentElement = clickedElement.parent();
+
+    if(clickedElement.hasClass("tree-expand") && !parentElement.hasClass("expandLeaf")) {
+        if (parentElement.hasClass("expandOpen")) {                         // свернуть
+            clickedElement
+                .siblings(".tree-content")
+                .children(".tree-radio")
+                .trigger("click");                                          // эмулируем выбор страницы при скрывании списка
+            parentElement.removeClass("expandOpen").addClass("expandClosed");
+        }
+        else {                                                              // развернуть
+            refreshTreeRecords(parentElement.attr('id'));
+            parentElement.removeClass("expandClosed").addClass("expandOpen");
+        }
+    }
+});
+
+// ===== ===== ===== ===== ===== ===== ===== ===== ФУНКЦИИ ===== ===== ===== ===== ===== ===== ===== =====
+
+// закрыть окно добавления страницы
+function closeAddPageWindow() {
+    winAdd.hide(200);
+    $('#text-title,#text-content').val('');
+    winAdd_errorMsg.hide();
+}
+
+// закрыть окно редактирования страницы
+function close_winEdit() {
+    winEdit.hide(200);
+    $('#text-title,#text-content').val('');
+    winAdd_errorMsg.hide();
+}
+
+
+// показать окно добавления страницы
+function show_winAdd() {
+    winAdd.show(200);
+    winAdd_titleText.focus();
+}
+// показать окно редактирования страницы
+function show_winEdit() {
+    winEdit.show(200);
+    winEdit_titleText.focus();
+}
 
 // добавление новой страницы на сервер
 function sendPageToServer(operationType) {
@@ -76,7 +137,6 @@ function sendPageToServer(operationType) {
         }
     });
 }
-
 
 // обновить ветку с сервера
 function refreshTreeRecords(appendToId) {
@@ -108,8 +168,6 @@ function refreshTreeRecords(appendToId) {
                     if (appendToId == "0") classList.push("isRoot");
                     if (serverData["child_count" + i] == "0") {
                         classList.push("expandLeaf");
-                        // if (i == childCount-1) classList.push("isLast");
-                        // else classList.push("expandLeaf");
                     }
                     else classList.push("expandClosed");
                     if (i == childCount-1)
@@ -127,33 +185,12 @@ function refreshTreeRecords(appendToId) {
     });
 }
 
-// свернуть/развернуть дерево
-$(".tree").click(function (event) {
-    event = event || window.event;                                          // для кроссбраузерности
-    var clickedElement = $(event.target || event.srcElement);
-    var parentElement = clickedElement.parent();
-
-    if(clickedElement.hasClass("tree-expand") && !parentElement.hasClass("expandLeaf")) {
-        if (parentElement.hasClass("expandOpen")) {                         // свернуть
-            clickedElement
-                .siblings(".tree-content")
-                .children(".tree-radio")
-                .trigger("click");                                          // эмулируем выбор страницы при скрывании списка
-            parentElement.removeClass("expandOpen").addClass("expandClosed");
-        }
-        else {                                                              // развернуть
-            refreshTreeRecords(parentElement.attr('id'));
-            parentElement.removeClass("expandClosed").addClass("expandOpen");
-        }
-    }
-});
-
 // найти контейнер элемента
 function getContainer(node_id) {
     return $("#tree-container__" + node_id);
 }
 
-// создать новый узел
+// создать новый узел дерева
 function newNode(node_id, node_text, node_class = "") {
     var node = $("<li>", {
         id: node_id,

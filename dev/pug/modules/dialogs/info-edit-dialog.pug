@@ -1,0 +1,23 @@
+.dialog-edit__background
+    .dialog-edit
+        .dialog-edit__header
+            .dialog-edit__header-title
+                p Редактирование странички
+            .dialog-edit__header-control
+                input(id='dialog-edit__btn-cancel' type='button' value='X')
+        .dialog-edit__content
+            .dialog-edit__content-title
+                .dialog-edit__content-title-caption
+                    p Заголовок
+                .dialog-edit__content-title-input
+                    input(id='dialog-edit__title' class='input-text' type='text')
+            .dialog-edit__content
+                .dialog-edit__content-caption
+                    p Текст странички
+                .dialog-edit__content-input
+                    textarea(id='dialog-edit__content' class='input-text')
+        .dialog-edit__footer
+            .dialog-edit__footer-errormsg
+                p Ошибка! Заполнены не все поля
+            .dialog-edit__footer-control
+                input(id='dialog-edit__btn-ok' type='button' value='OK')

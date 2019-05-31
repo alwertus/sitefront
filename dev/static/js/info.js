@@ -7,6 +7,7 @@ var
     winEdit_titleText   = $('#dialog-edit__title'),
     winEdit_contentText = $('#dialog-edit__content'),
     winEdit_errorMsg    = $('.dialog-edit__footer-errormsg');
+    checkedRadioId      = 0;
 
 // ===== ===== ===== ===== ===== ===== ===== ===== СОБЫТИЯ ===== ===== ===== ===== ===== ===== ===== =====
 
@@ -26,6 +27,13 @@ $('#add-info').click(function () {                             // открыть
     winAdd_content.attr("id","append_page");
 });
 
+// кнопка удаления
+$('#del-info').click(function () {
+    if (window.confirm('Точно удалить?')) {
+
+    };
+});
+
 // кнопка редактирования
 $('#edit-info').click(function () {                            // открыть окно добавления страницы
     var radioChecked = $('input[name=tree-radio]:checked');
@@ -34,8 +42,7 @@ $('#edit-info').click(function () {                            // открыть
     var sContent = $('.content-info').html();
     show_winEdit();
     winEdit_titleText.val(sTitle);
-    winEdit_contentText.html(sContent);
-    //winEdit.attr("id","edit_page");
+    winEdit_contentText.val(sContent);
     winEdit.attr("id",sId);
 });
 
@@ -44,7 +51,7 @@ $('.tree-root-label').click(function () {
     $('input[name=tree-radio]:checked').prop('checked', false);
 });
 
-// клик на ОК на окне добавления страницы
+// Добавление - ОК кнопка
 $('#btn-ok').click(function () {
     if (($.trim($("#text-content").val())).length == 0 || ($.trim($("#text-title").val())).length == 0) {
         // показываем сообщение об ошибке,
@@ -61,6 +68,23 @@ $('#btn-ok').click(function () {
     closeAddPageWindow();
     var checkedElementID = ($('input[name=tree-radio]:checked').parent()).parent().attr("id");
     refreshTreeRecords(checkedElementID);
+});
+
+// Редактирование - ОК кнопка
+$('#dialog-edit__btn-ok').click(function () {
+    if (($.trim(winEdit_contentText.val())).length == 0 || ($.trim(winEdit_titleText.val())).length == 0) {
+        // показываем сообщение об ошибке,
+        // затем устанавливаем событие скрытия сообщения об ошибке при наборе текста
+        winEdit_errorMsg.show(100);
+        $("#dialog-edit__content, #dialog-edit__title").keypress(function (e) {
+            winEdit_errorMsg.hide();
+            // отключаем событие при первом вызове
+            $("#dialog-edit__content, #dialog-edit__title").off('keypress');
+        });
+        return;
+    }
+    sendEditedPage();
+    close_winEdit();
 });
 
 // свернуть/развернуть дерево
@@ -96,10 +120,9 @@ function closeAddPageWindow() {
 // закрыть окно редактирования страницы
 function close_winEdit() {
     winEdit.hide(200);
-    $('#text-title,#text-content').val('');
-    winAdd_errorMsg.hide();
+    $('#dialog-edit__content, #dialog-edit__title').val('');
+    winEdit_errorMsg.hide();
 }
-
 
 // показать окно добавления страницы
 function show_winAdd() {
@@ -112,6 +135,13 @@ function show_winEdit() {
     winEdit_titleText.focus();
 }
 
+// удалить запись
+function delRec() {
+    var elementID = ($('input[name=tree-radio]:checked').parent()).parent().attr("id");
+    if (elementID == undefined || elementID == '0') return;
+    //TODO доделать удаление записи
+}
+
 // добавление новой страницы на сервер
 function sendPageToServer(operationType) {
     var elementID = ($('input[name=tree-radio]:checked').parent()).parent().attr("id");
@@ -122,12 +152,12 @@ function sendPageToServer(operationType) {
             "operation" : operationType,
             "title" : $("#text-title").val(),
             "page" : $("#text-content").val(),
-            "element" : elementID,
+            "element" : elementID,      // родитель к которому прикрепляется страница
         },
         url: 'InfoPageServlet',
         success: function(serverData) {      // удачный запрос
             var IdNewRecord = serverData.serverInfo;
-            console.log("Результат добавления записей: " + IdNewRecord);
+            console.log("Результат добавления записи: " + IdNewRecord);
             if (IdNewRecord != "-1") {
                 refreshTreeRecords(IdNewRecord);
             }
@@ -136,6 +166,35 @@ function sendPageToServer(operationType) {
             console.log("Ошибка обращения к серверу");
         }
     });
+}
+
+// сохранить изменения на сервере
+function sendEditedPage() {
+    var elementID = ($('input[name=tree-radio]:checked').parent()).parent().attr("id");
+    if (elementID == undefined) elementID = "0";
+    $.ajax({
+        type: 'POST',
+        data: {
+            "operation" : "edit_page",
+            "title" : winEdit_titleText.val(),
+            "page" : winEdit_contentText.val(),
+            "record_id" : elementID,
+            "element" : "-1",      // родитель к которому прикрепляется страница (оставляем текущий)
+        },
+        url: 'InfoPageServlet',
+        success: function(serverData) {      // удачный запрос
+            var IdUpdatedRecord = serverData.serverInfo;
+            console.log("Результат редактирования записи: " + IdUpdatedRecord);
+            if (IdUpdatedRecord != "-1") {
+                refreshTreeRecords(IdUpdatedRecord);
+                checkedRadioId = elementID;
+            }
+        },
+        error: function(e) {                // ошибка
+            console.log("Ошибка обращения к серверу");
+        }
+    });
+
 }
 
 // обновить ветку с сервера
@@ -154,7 +213,6 @@ function refreshTreeRecords(appendToId) {
 
             // далее надо обновить элемент, у которого обновляем ветку (expandClosed, isLast)
             if (childCount > 0) {
-                //elementToAppend.removeClass("isLast");
                 if (elementToAppend.hasClass("expandLeaf"))
                     elementToAppend.removeClass("expandLeaf");
                 if (!elementToAppend.hasClass("expandClosed") && !elementToAppend.hasClass("expandOpen"))
@@ -180,6 +238,10 @@ function refreshTreeRecords(appendToId) {
                 if (serverData["child_count" + i] == "1" && i == childCount -1) {
                     refreshTreeRecords(serverData['row_id' + i]);           // раскрыть дочерние если только 1 потомок
                 }
+            }
+            if (checkedRadioId != 0) {
+                $('#tree-radio__' + checkedRadioId).trigger("click");
+                checkedRadioId = 0;
             }
         }
     });

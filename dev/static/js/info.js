@@ -30,7 +30,7 @@ $('#add-info').click(function () {                             // открыть
 // кнопка удаления
 $('#del-info').click(function () {
     if (window.confirm('Точно удалить?')) {
-
+        delRec();
     };
 });
 
@@ -139,7 +139,24 @@ function show_winEdit() {
 function delRec() {
     var elementID = ($('input[name=tree-radio]:checked').parent()).parent().attr("id");
     if (elementID == undefined || elementID == '0') return;
-    //TODO доделать удаление записи
+    $.ajax({
+        type: 'POST',
+        data: {
+            "operation" : "del_page",
+            "element" : elementID,      // ID удаляемого объекта
+        },
+        url: 'InfoPageServlet',
+        success: function(serverData) {      // удачный запрос
+            var IdParentRecord = serverData.serverInfo;
+            console.log("Запись удалена. Обновить ветку: " + IdParentRecord);
+            if (IdParentRecord != "-1") {
+                refreshTreeRecords(IdParentRecord);
+            }
+        },
+        error: function(e) {                // ошибка
+            console.log("Ошибка обращения к серверу");
+        }
+    });
 }
 
 // добавление новой страницы на сервер

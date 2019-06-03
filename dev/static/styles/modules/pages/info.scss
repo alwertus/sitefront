@@ -40,3 +40,25 @@ a.menu-button {
     box-shadow: 0 0 0 1px #bbb inset, 0 1px 3px rgba(0,0,0,.5) inset, 0 1px 2px #fff;
   }
 }
+.main-page {
+  padding-left: 20px;
+  padding-right: 20px;
+  strong {
+    color: brown;
+    font-weight: bold;
+  }
+  .image {
+    text-align: center;
+    img {
+      width: 100px;
+      height: 100px;
+      align-content: center;
+    }
+  }
+  h3 {
+    text-align: center;
+  }
+  h4 {
+    color: red;
+  }
+}

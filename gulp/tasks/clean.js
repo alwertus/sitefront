@@ -3,6 +3,6 @@ module.exports = function () {
         return $.del('./build')
     })
     $.gulp.task('clean:copybuild', function () {
-        return $.del('../siteback/html', {force:true});
+        return $.del('../web/server/html', {force:true});
     })
 };

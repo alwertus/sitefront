@@ -129,6 +129,7 @@ function show_winAdd() {
     winAdd.show(200);
     winAdd_titleText.focus();
 }
+
 // показать окно редактирования страницы
 function show_winEdit() {
     winEdit.show(200);
@@ -221,7 +222,8 @@ function refreshTreeRecords(appendToId) {
         type: 'POST',
         data: {
             'operation' : 'get_branch',
-            'element' : appendToId
+            'element' : appendToId,
+            'rustextRq' : 'Запрос использует русский текст'
         },
         url: 'InfoPageServlet',
         success: function(serverData) {

@@ -26,7 +26,7 @@ $.gulp.task('dev', $.gulp.series(
     )
 ));
 
-$.gulp.task('build', $.gulp.series(
+/*$.gulp.task('build', $.gulp.series(
     'clean',
     $.gulp.parallel(
         'pug',
@@ -39,6 +39,19 @@ $.gulp.task('build', $.gulp.series(
         'clean:copybuild'
     ),
     'copybuild'
+));*/
+
+$.gulp.task('build', $.gulp.series(
+    'clean',
+    $.gulp.parallel(
+        'pug',
+        'fonts',
+        'styles:build-min',
+        'img:build',
+        'libsJS:build',
+        'js:build',
+        'svg'
+    )
 ));
 $.gulp.task('default', $.gulp.series(
     'dev',

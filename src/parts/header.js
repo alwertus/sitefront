@@ -1,7 +1,7 @@
 import React from 'react';
 
 class header extends React.Component {
-    constructor(props) {
+    /*constructor(props) {
         super(props);
         this.state = {
             error: null,
@@ -23,13 +23,9 @@ class header extends React.Component {
                     isLoaded: true,
                         error
                 });
-    }
-
-    /*getInitialState = function() {
-        return {checked: true}
-    };*/
+    }*/
     render() {
-        const { error, isLoaded, items } = this.state;
+        /*const { error, isLoaded, items } = this.state;
         if (error) {
             return <div>Ошибка: {error.message}</div>
         } else if (!isLoaded) {
@@ -46,13 +42,9 @@ class header extends React.Component {
                     }
                 </ul>
             );
-        }
-        /*const menu_items = ["first", "second","tree"];
-        return <div className={"header"}>
-            <a href={"https://www.youtube.com/watch?v=sbCgQJQNZKs&t=210s"}>lesson link</a>
-            <div>{menu_items.map(item => <div>{item}</div>)}</div>
-            <p>Абзац</p>
-        </div>*/
+        }*/
+        return null;
+
     }
 }
 

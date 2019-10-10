@@ -9,6 +9,7 @@ class App extends React.Component {
             <div className="wrapper">
                 <Header/>
                 <div className="mid">
+                    <button/>
                 </div>
             </div>
         );

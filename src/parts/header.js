@@ -39,7 +39,6 @@ class header extends React.Component {
                 errorCode: json.errorCode
             });
         } catch (error) {
-            //TODO set 1
             this.setState({errorCode: '1'});
         }
     }

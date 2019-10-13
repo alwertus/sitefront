@@ -6,17 +6,17 @@ class header extends React.Component {
     constructor(props) {
         super(props);
 
-        let response = '{"count":"4","errorCode":"0","items":[' +
+        /*let response = '{"count":"4","errorCode":"0","items":[' +
             '{"name":"Главная","link":"link1","id":"1"},' +
             '{"name":"Володя","link":"link2","id":"2"},' +
             '{"name":"Мащьпулькэ","link":"link3","id":"3"},' +
             '{"name":"Гуманойд","link":"link4","id":"4"}' +
             '],"errorMsg":""}';
-        let json = JSON.parse(response);
+        let json = JSON.parse(response);*/
 
         this.state = {
-            items: json.items,
-            errorCode: json.errorCode
+            // items: json.items,
+            // errorCode: json.errorCode
         };
     }
 

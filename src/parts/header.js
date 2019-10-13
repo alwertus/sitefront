@@ -40,7 +40,7 @@ class header extends React.Component {
             });
         } catch (error) {
             //TODO set 1
-            this.setState({errorCode: '0'});
+            this.setState({errorCode: '1'});
         }
     }
 

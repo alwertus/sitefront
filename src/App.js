@@ -1,8 +1,6 @@
 import React from 'react';
 import Header from './parts/header';
 import Button from './parts/button';
-// import logo from './logo.svg';
-// import './App.css';
 
 class App extends React.Component {
     render() {

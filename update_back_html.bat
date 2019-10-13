@@ -1,7 +1,8 @@
 cls
 set front_folder=%~dp0
-cd %front_folder%/../siteback/
-set back_folder=%CD%\
+rem cd %front_folder%/../siteback/
+rem set back_folder=%CD%\
+set back_folder=d:\Alwertus\Project\Java\Projects\Teaching\siteback\
 
 cd %front_folder%
 

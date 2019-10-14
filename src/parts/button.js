@@ -2,11 +2,45 @@ import React from 'react';
 
 class button extends React.Component {
 
-// PLEASE DELETE THIS SHIT
-    async onButtonClickEvent() {
-        console.log("Button stringify pressed");
+    constructor(prop) {
+        super(prop);
+        this.onButtonClick_Test = this.onButtonClick_Test.bind(this);
+    }
 
-        /*
+    async onButtonClick_Test() {
+        console.log("Button test pressed");
+
+        try {
+            const request = await fetch('/auth', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json;charset=utf-8'},
+                body: JSON.stringify({
+                    operation: "test"
+                })
+            });
+
+            const json = await request.json();
+
+            if (json.errorCode === "0") {
+                console.log("RESULT: OK");
+            } else
+                console.log("RESULT: " + json.errorMsg);
+
+        } catch (error) {
+            console.log("ERROR: " + error.toString());
+        }
+    }
+
+    render() {
+        return <div>
+            <button className={"button_sendAuth "} onClick={this.onButtonClick_Test}>Go</button>
+        </div>
+    }
+}
+
+export default button;
+
+/*
         try {
             const response = await fetch('/menuitems', {
                 method: 'POST',
@@ -23,42 +57,34 @@ class button extends React.Component {
 
 
 
-        // console.log(json.items[2]);
+// console.log(json.items[2]);
 
 
-        /*var resp = await fetch('/menuitems', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json;charset=utf-8'
-                },
-                body: JSON.stringify({
-                    "operation": "adЫN"
-                })
-                // ,
-            // body: JSON.stringify({
-            //     name: 'John',
-            //     surname: 'Smith'
-            // })
-            }).then(response => response.json())
-            // .then(commits => console.log(commits[0].author.login));
-        console.log(resp);*/
+/*var resp = await fetch('/menuitems', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({
+            "operation": "adЫN"
+        })
+        // ,
+    // body: JSON.stringify({
+    //     name: 'John',
+    //     surname: 'Smith'
+    // })
+    }).then(response => response.json())
+    // .then(commits => console.log(commits[0].author.login));
+console.log(resp);*/
 
-        /*$.ajax({
-            url: 'http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=bd82977b86bf27fb59a04b61b657fb6f',
-            method: 'GET',
-            success: function(result) {
-                this.setState({data: result});
-            }.bind(this)
-        });*/
-    }
+/*$.ajax({
+    url: 'http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=bd82977b86bf27fb59a04b61b657fb6f',
+    method: 'GET',
+    success: function(result) {
+        this.setState({data: result});
+    }.bind(this)
+});*/
 
-
-    render() {
-        return <div></div>
-    }
-}
-
-export default button;
 // {<button onClick={this.onButtonClickEvent}>Button(stringify-data)</button>}
 /*const menu_items = ["first", "second","tree"];
 return <div className={"header"}>

@@ -39,6 +39,10 @@ class login extends React.Component {
 
     async onButtonClick_Logout() {
         console.log("logout");
+        let sessionString = localStorage.getItem("sessionString") == null ? "" : localStorage.getItem("sessionString");
+        localStorage.removeItem("userLoginAs");
+        localStorage.removeItem("sessionString");
+
         this.setState({
             sessionString: "",
             userLoginAs: "Гость",
@@ -47,8 +51,17 @@ class login extends React.Component {
             hideLoginForm: "",
             hideLogoutForm: "hide"
         });
-        localStorage.removeItem("userLoginAs");
-        localStorage.removeItem("sessionString");
+
+        const request = await fetch('/auth', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json;charset=utf-8'},
+            body: JSON.stringify({
+                operation: "logout",
+                sessionString: sessionString
+            })
+        });
+        const json = await request.json();
+
         window.location.reload();
     }
 

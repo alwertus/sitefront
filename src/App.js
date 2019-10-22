@@ -7,9 +7,6 @@ class App extends React.Component {
         return(
             <div className="wrapper">
                 <Header/>
-                <div className="mid">
-                    <Button/>
-                </div>
             </div>
         );
     }

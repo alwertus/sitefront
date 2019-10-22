@@ -1,40 +1,17 @@
 import React from 'react';
 import Header from './parts/header';
 import Button from './parts/button';
+import { Link } from "react-router";
 
 class App extends React.Component {
     render() {
         return(
             <div className="wrapper">
                 <Header/>
+                <Link to="/">Home</Link>
+                <Link to="/news">News</Link>
             </div>
         );
     }
 }
-
-
-/*function App() {
-  return (
-      <div className={"main-wrapper"}>
-
-      </div>
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}*/
-
 export default App;

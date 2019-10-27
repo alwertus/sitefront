@@ -1,7 +1,17 @@
-import React from 'react';
-import Header from './parts/header';
-import Button from './parts/button';
+/*import React from 'react';
+import Header from './header';
+import Button from './button';
 import { Link } from "react-router";
+
+class App extends React.Component {
+    render() {
+        return(
+            <div className="wrapper">
+
+            </div>
+        );
+    }
+}
 
 class App extends React.Component {
     render() {
@@ -15,3 +25,4 @@ class App extends React.Component {
     }
 }
 export default App;
+*/

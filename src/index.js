@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TeachApp from "./teach_2/TeachApp";
+import App from "./app/App";
 
 ReactDOM.render(
-    <TeachApp/>,document.getElementById('root')
+    <App/>,document.getElementById('root')
 );

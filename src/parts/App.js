@@ -3,7 +3,7 @@ import Header from './header';
 import Button from './button';
 import { Link } from "react-router";
 
-class App extends React.Component {
+class app-shit extends React.Component {
     render() {
         return(
             <div className="wrapper">
@@ -13,7 +13,7 @@ class App extends React.Component {
     }
 }
 
-class App extends React.Component {
+class app-shit extends React.Component {
     render() {
         return(
             <div className="wrapper">
@@ -24,5 +24,5 @@ class App extends React.Component {
         );
     }
 }
-export default App;
+export default app-shit;
 */

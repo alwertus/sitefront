@@ -1,7 +1,8 @@
 ## Links:
 * [Использование Fetch](https://developer.mozilla.org/ru/docs/Web/API/Fetch_API/Using_Fetch)
 * [Отличная статья по React-Router](https://getinstance.info/articles/react/learning-react-redux/)
-* [Видео по Redux](https://www.youtube.com/watch?v=Ef_xM5OtP5s)
+* [Видео по Redux](https://www.youtube.com/watch?v=sYCoujpCv8s&list=PL0lO_mIqDDFXaDvwLJ6aMnmIt7sdmujKp)
+* [Статья по Thunk](https://tuhub.ru/posts/redux-i-thunk-vmeste-react-rukovodstvo-dlya-chajnikov)
 
 ## Installation from scratch (to avoid errors):
 * npx create-react-app sitefront

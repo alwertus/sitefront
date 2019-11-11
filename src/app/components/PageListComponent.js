@@ -31,7 +31,6 @@ class PageListComponent extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         items: state.pageList,
         hasError: state.pageListHasError,

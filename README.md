@@ -1,5 +1,6 @@
 ## Links:
 * [Использование Fetch](https://developer.mozilla.org/ru/docs/Web/API/Fetch_API/Using_Fetch)
+* [Обучалка Fetch](https://learn.javascript.ru/fetch)
 * [Отличная статья по React-Router](https://getinstance.info/articles/react/learning-react-redux/)
 * [Видео по Redux](https://www.youtube.com/watch?v=sYCoujpCv8s&list=PL0lO_mIqDDFXaDvwLJ6aMnmIt7sdmujKp)
 * [Статья по Thunk](https://tuhub.ru/posts/redux-i-thunk-vmeste-react-rukovodstvo-dlya-chajnikov)

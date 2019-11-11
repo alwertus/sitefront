@@ -1,18 +1,20 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux';
-import { itemsFetchData } from '../actions/items';
+import { itemsFetchData } from '../actions/PageListActions';
 
-class ItemList extends Component {
+class PageListComponent extends Component {
     componentDidMount() {
         this.props.fetchData();
     }
 
     render() {
-        if (this.props.pageListHasError) {
+        if (this.props.hasError) {
+            console.log("render has error");
             return <p>Error loading</p>;
         }
 
-        if (this.props.pageListIsLoading) {
+        if (this.props.isLoading) {
+            console.log("render is loading");
             return <p>Loading…</p>;
         }
 
@@ -29,6 +31,7 @@ class ItemList extends Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state);
     return {
         items: state.pageList,
         hasError: state.pageListHasError,
@@ -38,8 +41,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchData: (url) => dispatch(itemsFetchData(url))
+        fetchData: () => dispatch(itemsFetchData())
+        //fetchData: (param1) => dispatch(itemsFetchData(param1)) param1 - так можно передать функции параметр
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ItemList);
+export default connect(mapStateToProps, mapDispatchToProps)(PageListComponent);

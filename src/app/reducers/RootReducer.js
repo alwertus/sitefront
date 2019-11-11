@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { pageList, pageListHasError, pageListIsLoading } from './PageList';
+import { pageList, pageListHasError, pageListIsLoading } from './PageListReducer';
 
 export default combineReducers({
     pageList,

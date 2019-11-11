@@ -4,6 +4,8 @@ import { itemsFetchData } from '../actions/PageListActions';
 
 class PageListComponent extends Component {
     componentDidMount() {
+        localStorage.setItem("userLoginAs", "Alwertus");
+        localStorage.setItem("sessionString", "123");
         this.props.fetchData();
     }
 

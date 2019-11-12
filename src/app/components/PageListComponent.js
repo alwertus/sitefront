@@ -16,7 +16,6 @@ class PageListComponent extends Component {
         }
 
         if (this.props.isLoading) {
-            console.log("render is loading");
             return <p>Loading…</p>;
         }
 

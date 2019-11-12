@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux';
-import { itemsFetchData } from '../actions/PageListActions';
+import { itemsFetchData } from './PageListActions';
 
 class PageListComponent extends Component {
     componentDidMount() {

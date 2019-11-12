@@ -1,7 +1,7 @@
 export function pageListHasError(bool) {
     return {
         type: 'PAGELIST_HAS_ERROR',
-        hasErrored: bool
+        hasError: bool
     };
 }
 

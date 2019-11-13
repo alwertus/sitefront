@@ -1,34 +1,49 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux';
-import { makeLogin, setUserLogin, setUserPassw } from './LoginActions';
+import { changeUserLogin, changeUserPassw, signIn } from './LoginActions';
 
 class LoginComponent extends Component {
 
-    constructor(props) {
+    constructor(props) {                                                                                                // регистрация функций
         super(props);
         this.onButtonClick_Login = this.onButtonClick_Login.bind(this);
         this.onChange = this.onChange.bind(this);
     }
 
     componentDidMount() {
+        console.log("userName:");
+        console.log(localStorage.getItem("userName"));
     }
 
     render() {
         const BASE_ID = "Login";
+        if (this.props.userIsLoading)
+            return <div className="login-window">
+                <p>Loading...</p>
+            </div>
         return <div className="login-window">
+            <p>UserInfo:</p>
+            <ul>
+                <li>userLogin: {this.props.userLogin}</li>
+                <li>userPassw: {this.props.userPassw}</li>
+                <li>userName: {this.props.userName}</li>
+                <li>userSessionString: {this.props.userSession}</li>
+                <li>LocalStorage.UserName: loading={this.props.userIsLoading ? "+" : "-"}</li>
+            </ul>
             <p id={BASE_ID + "_Error_Text"}>Текст ошибки</p>
-            <p id={BASE_ID + "_UserName_Text"}>UserName</p>
+            <p id={BASE_ID + "_UserName_Text"}>{this.props.userName}</p>
             <div>
                 <input name="userLogin" type="text" placeholder="Имя" onChange={this.onChange}/>
                 <input name="userPass" type="password" placeholder="Пароль" onChange={this.onChange}/>
-                <button onClick={this.props.makeLogin}>Go</button>
+                <button onClick={this.onButtonClick_Login}>Go</button>
                 <button onClick={this.onButtonClick_Logout}>Logout</button>
             </div>
         </div>;
     }
 
     onButtonClick_Login() {
-        this.props.makeLogin();
+        this.props.signIn();
+        // this.props.makeLogin();
     }
 
     onButtonClick_Logout() {
@@ -36,25 +51,33 @@ class LoginComponent extends Component {
     }
 
     onChange(event) {
-        if (event.target.name === "userLogin") this.props.setUserLogin(event.target.value);
-        if (event.target.name === "userPass") this.props.setUserLogin(event.target.value);
-        // if (event.target.name === "userLogin") this.sLogin = event.target.value;
-        // if (event.target.name === "userPass") this.sPassw = event.target.value;
+        if (event.target.name === "userLogin") this.props.changeUserLogin(event.target.value);
+        if (event.target.name === "userPass") this.props.changeUserPassw(event.target.value);
+        // if (event.target.name === "userPass") this.props.setUserLogin(event.target.value);
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        sessionString: state.userSessionString,
+        userLogin: state.userLogin,
+        userPassw: state.userPassw,
+        userName: state.userName,
+        userSession: state.userSession,
+        userIsLoading: state.userIsLoading
+        // sessionString: state.userSessionString
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        changeUserLogin: (val) => dispatch(changeUserLogin(val)),
+        changeUserPassw: (val) => dispatch(changeUserPassw(val)),
+        signIn: () => signIn(dispatch)
+
          // makeLogin: (userInfo) => dispatch(makeLogin(userInfo.sLogin, userInfo.sPassw))
-        makeLogin: (param1) => dispatch(makeLogin(param1)),
-        setUserLogin: (val) => dispatch(setUserLogin(val)),
-        setUserPassw: (val) => dispatch(setUserPassw(val))
+        // makeLogin: (param1) => dispatch(makeLogin(param1)),
+
+        // setUserPassw: (val) => dispatch(setUserPassw(val))
     };
 };
 

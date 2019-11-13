@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { pageList, pageListHasError, pageListIsLoading } from '../components/pagelist/PageListReducer';
-import { userLogin, userPassw, userName, userSession, userIsLoading } from "../components/login/LoginReducer";
+import { userLogin, userPassw, userName, userSession, userIsLoading, userErrorText } from "../components/login/LoginReducer";
 
 // расположенные ниже будут доступны через state.*
 export default combineReducers({
@@ -12,5 +12,6 @@ export default combineReducers({
     userPassw,
     userName,
     userSession,
-    userIsLoading
+    userIsLoading,
+    userErrorText
 });

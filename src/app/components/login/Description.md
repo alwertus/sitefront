@@ -7,13 +7,10 @@
 | + | setUserSession() | USER_SET_SESSION | userSession <br>_(save to localStorage)_ |
 | + | signIn() | <hr> | <hr> |
 | + | setUserLoading() | USER_IS_LOADING | userIsLoading |
-|  | setErrorText() | USER_SET_ERROR_TEXT | userErrorText |
-|  |  |  |  |
+| + | setErrorText() | USER_SET_ERROR_TEXT | userErrorText |
 
-* USER_FETCH_DATA_SUCCESS
-
-###### Store
-* userErrorText
+#### TODO:
+`Сделать отображение логина в зависимоти от session`
 
 ##### IncomingMsg
 sessionString  

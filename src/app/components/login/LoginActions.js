@@ -4,6 +4,7 @@ export function setUserName     (newValue) { return { type: "USER_SET_NAME",    
 export function setUserSession  (newValue) { return { type: "USER_SET_SESSION",    userSession:   newValue } }
 export function setUserLoading  (newValue) { return { type: "USER_IS_LOADING",     userIsLoading: newValue } }
 export function setErrorText    (newValue) { return { type: "USER_SET_ERROR_TEXT", userErrorText: newValue } }
+export function pageListNeedUpdate    (newValue) { return { type: "PAGELIST_UPDATE", userErrorText: newValue } }
 
 export function signIn(dispatch, userLogin, userPassw) {
     dispatch(setUserLoading(true));
@@ -23,7 +24,10 @@ export function signIn(dispatch, userLogin, userPassw) {
             dispatch(setUserSession(response.sessionString));
             dispatch(setUserName(response.userName));
             dispatch(setErrorText(response.errorMsg));
+            dispatch(changeUserLogin(""));
+            dispatch(changeUserPassw(""));
 
+            dispatch(pageListNeedUpdate(true));
             return response;
         })
         .catch(() => {

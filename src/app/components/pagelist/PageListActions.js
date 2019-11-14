@@ -19,6 +19,13 @@ export function pageListFetchDataSuccess(items) {
     };
 }
 
+export function pageListNeedUpdate(bool) {
+    return {
+        type: 'PAGELIST_UPDATE',
+        needUpdate: bool
+    };
+}
+
 export function itemsFetchData() {
     return (dispatch) => {
         dispatch(pageListIsLoading(true));
@@ -27,14 +34,15 @@ export function itemsFetchData() {
             headers: {'Content-Type': 'application/json;charset=utf-8'},
             body: JSON.stringify({
                 operation: "getMenuItems",
-                userLoginAs: localStorage.getItem("userLoginAs") == null ? "" : localStorage.getItem("userLoginAs"),
-                sessionString: localStorage.getItem("sessionString") == null ? "" : localStorage.getItem("sessionString")
+                userLoginAs: localStorage.getItem("userName") == null ? "" : localStorage.getItem("userName"),
+                sessionString: localStorage.getItem("userSession") == null ? "" : localStorage.getItem("userSession")
             })})
             .then((response) => {
                 if (!response.ok)
                     throw Error(response.statusText);
 
                 dispatch(pageListIsLoading(false));
+                // dispatch(pageListNeedUpdate(false));
                 return response;
             })
             .then((response) => response.json())

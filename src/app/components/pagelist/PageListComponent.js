@@ -4,12 +4,15 @@ import { itemsFetchData } from './PageListActions';
 
 class PageListComponent extends Component {
     componentDidMount() {
-        localStorage.setItem("userLoginAs", "Alwertus");
-        localStorage.setItem("sessionString", "123");
         this.props.fetchData();
     }
 
     render() {
+        if (this.props.pageListNeedUpdate) {
+            console.log("refresh list");
+            // this.props.fetchData();
+        }
+
         if (this.props.hasError) {
             console.log("render has error");
             return <p>Error loading</p>;
@@ -35,14 +38,14 @@ const mapStateToProps = (state) => {
     return {
         items: state.pageList,
         hasError: state.pageListHasError,
-        isLoading: state.pageListIsLoading
+        isLoading: state.pageListIsLoading,
+        pageListNeedUpdate: state.pageListNeedUpdate
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchData: () => dispatch(itemsFetchData())
-        //fetchData: (param1) => dispatch(itemsFetchData(param1)) param1 - так можно передать функции параметр
     };
 };
 

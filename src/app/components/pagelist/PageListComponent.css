@@ -1,0 +1,16 @@
+.pagelist-wrapper {
+    /*border: 1px solid #d9cc24;*/
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: space-around;
+    padding-right: 10px;
+}
+.pagelist-item {
+    border: 1px solid #73d07340;
+    border-radius: 4px;
+    padding: 5px 10px;
+    margin-left: 10px;
+    font-family: MainFont, serif;
+    font-size: 20px;
+}

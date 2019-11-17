@@ -7,7 +7,7 @@ export function userIsLoading (state = false, action) { switch (action.type) { c
 export function userErrorText (state = "",    action) { switch (action.type) { case "USER_SET_ERROR_TEXT": return action.userErrorText;
                                                                                default:                    return state; } }
 
-export function userName(state = localStorage.getItem("userName") == null ? "Noname" : localStorage.getItem("userName"), action) {
+export function userName(state = localStorage.getItem("userName") == null ? "Гость" : localStorage.getItem("userName"), action) {
     switch (action.type) {
         case "USER_SET_NAME":
             localStorage.setItem("userName", action.userName);

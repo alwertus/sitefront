@@ -1,6 +1,7 @@
-import React, { Component} from 'react';
-import { connect } from 'react-redux';
-import { itemsFetchData } from './PageListActions';
+import React, { Component} from "react";
+import { connect } from "react-redux";
+import { itemsFetchData } from "./PageListActions";
+import "./PageListComponent.css";
 
 class PageListComponent extends Component {
     componentDidMount() {
@@ -8,28 +9,30 @@ class PageListComponent extends Component {
     }
 
     render() {
-        if (this.props.pageListNeedUpdate) {
-            console.log("refresh list");
-            // this.props.fetchData();
-        }
-
         if (this.props.hasError) {
-            console.log("render has error");
-            return <p>Error loading</p>;
+            return <div className="pagelist-wrapper">
+                <p>Error loading</p>
+            </div>;
         }
 
         if (this.props.isLoading) {
-            return <p>Loading…</p>;
+            return <div className="pagelist-wrapper">
+                <p>Loading…</p>
+            </div>;
+        }
+
+        if (this.props.pageListNeedUpdate) {
+            this.props.fetchData();
         }
 
         return (
-            <ul>
+            <div className="pagelist-wrapper">
                 {this.props.items.map((item) => (
-                    <li key={item.id}>
+                    <div key={item.id} className="pagelist-item">
                         {item.name}
-                    </li>
+                    </div>
                 ))}
-            </ul>
+            </div>
         );
     }
 }

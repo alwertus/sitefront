@@ -13,6 +13,7 @@ export function pageListIsLoading(bool) {
 }
 
 export function pageListFetchDataSuccess(items) {
+    console.log(items);
     return {
         type: 'PAGELIST_FETCH_DATA_SUCCESS',
         items
@@ -42,11 +43,24 @@ export function itemsFetchData() {
                     throw Error(response.statusText);
 
                 dispatch(pageListIsLoading(false));
-                // dispatch(pageListNeedUpdate(false));
+                dispatch(pageListNeedUpdate(false));
                 return response;
             })
             .then((response) => response.json())
             .then((items) => dispatch(pageListFetchDataSuccess(items)))
             .catch(() => dispatch(pageListHasError(true)));
+    };
+}
+
+// fake response
+export function itemsFetchData_() {
+    var items = {errorCode: "0", items: [
+                {name: "Главная", link: "", id: "1"},
+                {name: "Вторая", link: "", id: "2"},
+                {name: "Третья", link: "", id: "3"}
+            ], errorMsg: ""};
+    return (dispatch) => {
+        dispatch(pageListNeedUpdate(false));
+        dispatch(pageListFetchDataSuccess(items));
     };
 }

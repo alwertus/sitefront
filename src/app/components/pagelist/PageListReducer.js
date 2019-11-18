@@ -27,3 +27,14 @@ export function pageList(state = [], action) {
             return state;
     }
 }
+
+export function pageListNeedUpdate(state = false, action) {
+    switch (action.type) {
+        case 'PAGELIST_UPDATE':
+            return action.needUpdate;
+        default:
+            return state;
+    }
+}
+
+

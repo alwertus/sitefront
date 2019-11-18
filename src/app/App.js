@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import configureStore from "./store/ConfigureStore";
 import PageListComponent from "./components/pagelist/PageListComponent";
 import LoginComponent from "./components/login/LoginComponent";
+import TreeComponent from "./components/tree/TreeComponent";
 import "./App.css";
 
 const store = configureStore();
@@ -14,6 +15,8 @@ export default () => (
             <div className="login-container"><LoginComponent/></div>
         </div>
         <div className="content-container">
+            <TreeComponent/>
+            <hr/>
             <p>Тестовые логин/пароль:</p>
             <ul>
                 <li>1/1</li>

@@ -36,5 +36,3 @@ export function pageListNeedUpdate(state = false, action) {
             return state;
     }
 }
-
-

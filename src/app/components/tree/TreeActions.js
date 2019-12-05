@@ -1,1 +1,1 @@
-export function treeSetItems(items) { return { type: "TREE_SET_ITEMS", items: items } }
+export function setNewTree (newValue) { return { type: "TREE_SET_ITEMS",      newTree:     newValue } }

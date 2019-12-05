@@ -1,45 +1,34 @@
 import React, { Component} from "react";
 import { connect } from "react-redux";
-import SortableTree from "react-sortable-tree";
-import "./TreeComponentModule.css";
-import treeSetItems from "./TreeActions";
-// import "../../../../node_modules/react-sortable-tree/style.css";
-// import "./TreeComponent.css";
+import "./TreeComponent.css";
+import TreeElement from "./element/TreeElement";
+// import setNewTree from "./TreeActions";
 
 class TreeComponent extends Component {
 
-    constructor(props) {                                                                                                // регистрация функций
-        super(props);
-        /*this.state = {
-            treeData: [
-                { title: "Chicken", expanded: true, children: [{ title: "Egg" }] }
-            ]
-        };*/
-    }
-
     render() {
+        console.log(this.props);
         return <div className="tree-wrapper">
-            <div style={{ height: 500 }}>
-                <SortableTree
-                    treeData={this.props.treeData}
-                    onChange={treeData => this.props.treeSetItems({ treeData })}
-                />
-            </div>
+            <p>My Tree</p>
+            { this.props.treeData.map((item) => (<TreeElement key={item.id} element={item} />)) }
         </div>;
     }
+
 }
 
 const mapStateToProps = (state) => {
     return {
-        treeData: state.treeData
+         treeData: state.treeData
         // userLogin: state.userLogin,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        treeSetItems: (items) => dispatch(treeSetItems(items))
-        // changeUserLogin: (val) => dispatch(changeUserLogin(val))
+        setNewTree: function(param) {
+            // dispatch(setNewTree(param));
+        }
+
     };
 };
 

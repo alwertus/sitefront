@@ -1,0 +1,6 @@
+.tree-node>ul {
+    padding: 0 0 0 10px;
+}
+.expanded-button {
+    display: inline;
+}

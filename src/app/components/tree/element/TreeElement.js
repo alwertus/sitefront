@@ -2,10 +2,16 @@ import React from "react";
 
 // корневой элемент
 export default function TreeElement(props) {
-    // console.log(props);
     return <div className="tree-node">
-        {getExpandedElement(props.element.id, props.element.expanded, props.element.children, props.onExpandClick)} {props.element.title} <sub>{props.element.id}</sub>
-            { getChildren(props.element.children, props.onExpandClick) }
+        <div className="tree-node-line">
+            { getExpandedElement(
+                props.element.id,
+                props.element.expanded,
+                props.element.children,
+                props.onExpandClick) }
+            {props.element.title} <sub>{props.element.id}</sub>
+        </div>
+        { props.element.expanded ? getChildren(props.element.children, props.onExpandClick) : "" }
     </div>;
 }
 
@@ -20,9 +26,10 @@ function getChildren(child, onExpandClick) {
 
 // кнопка-открывашка открыто/закрыто/отсутствует
 function getExpandedElement(id, isExpanded, childrens, onClick ) {
-    if ( isExpanded === undefined || childrens === undefined || onClick === undefined)
-        return null;
-    return isExpanded ?
-        <div className="expanded-button open" onClick={onClick(id, isExpanded)}>+</div> :
-        <div className="expanded-button close" onClick={onClick(id, isExpanded)}>-</div>
+    if ( isExpanded === undefined ||
+         childrens  === undefined ||
+         onClick    === undefined )
+            return null;
+    return isExpanded ? <div className="expanded-button open" onClick={onClick(id, isExpanded)}>-</div> :
+                        <div className="expanded-button close" onClick={onClick(id, isExpanded)}>+</div>
 }

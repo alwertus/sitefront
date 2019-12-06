@@ -2,10 +2,9 @@ import React, { Component} from "react";
 import { connect } from "react-redux";
 import "./TreeComponent.css";
 import TreeElement from "./element/TreeElement";
-// import setNewTree from "./TreeActions";
+import { setTreeExpanded } from "./TreeActions";
 
 class TreeComponent extends Component {
-
 
     constructor(props, context) {
         super(props, context);
@@ -13,21 +12,25 @@ class TreeComponent extends Component {
     }
 
     render() {
-        console.log(this.props);
+        // console.log("ALL TREE: ", this.props.treeData);
         return <div className="tree-wrapper">
             <p>My Tree</p>
                 { this.props.treeData.map((item) => (<TreeElement key={item.id} element={item} onExpandClick={this.onExpandClick} />)) }
         </div>;
     }
 
+    // передаём эту функцию в дочерние expand-элементы
     onExpandClick(id, isExpanded) {
+        var t = this;
         return function() {
-            console.log("clicked to id=" + id + " " + isExpanded);
+            // console.log("change (" + id + ") " + isExpanded + " -> " + !isExpanded);
+            if (t !== undefined)
+            t.props.changeExpand(id, !isExpanded);
         }
     }
-
 }
 
+// получаем state
 const mapStateToProps = (state) => {
     return {
          treeData: state.treeData
@@ -35,11 +38,11 @@ const mapStateToProps = (state) => {
     };
 };
 
+// получаем functions
 const mapDispatchToProps = (dispatch) => {
     return {
-        setNewTree: function(param) {
-            // dispatch(setNewTree(param));
-        }
+        //changeUserPassw: (val) => dispatch(changeUserPassw(val))
+        changeExpand: (id, value) => dispatch(setTreeExpanded(id, value))
     };
 };
 

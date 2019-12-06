@@ -6,12 +6,24 @@ import TreeElement from "./element/TreeElement";
 
 class TreeComponent extends Component {
 
+
+    constructor(props, context) {
+        super(props, context);
+        this.onExpandClick = this.onExpandClick.bind(this);
+    }
+
     render() {
         console.log(this.props);
         return <div className="tree-wrapper">
             <p>My Tree</p>
-            { this.props.treeData.map((item) => (<TreeElement key={item.id} element={item} />)) }
+                { this.props.treeData.map((item) => (<TreeElement key={item.id} element={item} onExpandClick={this.onExpandClick} />)) }
         </div>;
+    }
+
+    onExpandClick(id, isExpanded) {
+        return function() {
+            console.log("clicked to id=" + id + " " + isExpanded);
+        }
     }
 
 }
@@ -28,7 +40,6 @@ const mapDispatchToProps = (dispatch) => {
         setNewTree: function(param) {
             // dispatch(setNewTree(param));
         }
-
     };
 };
 

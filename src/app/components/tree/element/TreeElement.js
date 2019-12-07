@@ -3,7 +3,7 @@ import React from "react";
 // корневой элемент
 export default function TreeElement(props) {
     return <div className="tree-node">
-        <div className="tree-node-line">
+        <div className="tree-node-line" onClick={onCheckClick(props.element.id)} >
             { getExpandedElement(
                 props.element.id,
                 props.element.expanded,
@@ -13,7 +13,16 @@ export default function TreeElement(props) {
         </div>
         { props.element.expanded ? getChildren(props.element.children, props.onExpandClick) : "" }
     </div>;
+
+    function onCheckClick(id) {
+        return function() {
+            console.log("123-" + id);
+        }
+
+    }
 }
+
+
 
 // создание всех детей
 function getChildren(child, onExpandClick) {

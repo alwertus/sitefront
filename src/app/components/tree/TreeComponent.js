@@ -30,7 +30,7 @@ class TreeComponent extends Component {
     }
 }
 
-// получаем state
+// заносим state в props
 const mapStateToProps = (state) => {
     return {
          treeData: state.treeData
@@ -38,7 +38,7 @@ const mapStateToProps = (state) => {
     };
 };
 
-// получаем functions
+// заносим functions в props
 const mapDispatchToProps = (dispatch) => {
     return {
         //changeUserPassw: (val) => dispatch(changeUserPassw(val))

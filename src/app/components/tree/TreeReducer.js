@@ -38,12 +38,10 @@ function changeChildsExpand(arrChild, id, newValue) {
 }
 
 // id активной страницы
-export function treeDataActivePage(state = "", action) {
+export function treeActivePage(state = "", action) {
     switch (action.type) {
         case "TREE_SET_ACTIVEPAGE":
-            return action.items.items;
-        case "TREE_CHANGE_EXPANDED":
-            return changeChildsExpand(state, action.id, action.newValue);
+            return null;
         default:
             return state;
     }

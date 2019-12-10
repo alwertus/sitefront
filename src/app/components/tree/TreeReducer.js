@@ -41,7 +41,8 @@ function changeChildsExpand(arrChild, id, newValue) {
 export function treeActivePage(state = "", action) {
     switch (action.type) {
         case "TREE_SET_ACTIVEPAGE":
-            return null;
+            console.log(action.newValue);
+            return action.newValue;
         default:
             return state;
     }

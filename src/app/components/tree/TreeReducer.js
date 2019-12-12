@@ -11,7 +11,18 @@ const defaultTreeData = [
     { id: "i1", title: "root1", expanded: true }
 ];
 
-// получаем структуру каталогов
+// флаг необходимости обновить дерево
+export function treeNeedUpdate(state = false, action) {
+    switch (action.type) {
+        case "TREE_NEED_UPDATE":
+            return action.needUpdate;
+        default:
+            return state;
+
+    }
+}
+
+// получаем структуру
 export function treeData(state = defaultTreeData, action) {
     switch (action.type) {
         case "TREE_SET_ITEMS":
@@ -23,21 +34,19 @@ export function treeData(state = defaultTreeData, action) {
     }
 }
 
+// рекурсионно перебираем все дочерние элементы
 function changeChildsExpand(arrChild, id, newValue) {
     if (arrChild === undefined) return null;
 
     return arrChild.map(function (item, index) {
-
         if (item.id === id) item.expanded = newValue;
         if (item.children !== undefined)
             item.children = changeChildsExpand(item.children, id, newValue);
-
         return item;
-        }
-    );
+    });
 }
 
-// id активной страницы
+// устанавливаем id выбранной страницы
 export function treeActivePage(state = "", action) {
     switch (action.type) {
         case "TREE_SET_ACTIVEPAGE":

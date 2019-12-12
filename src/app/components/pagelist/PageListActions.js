@@ -13,7 +13,7 @@ export function pageListIsLoading(bool) {
 }
 
 export function pageListFetchDataSuccess(items) {
-    console.log(items);
+    // console.log(items);
     return {
         type: 'PAGELIST_FETCH_DATA_SUCCESS',
         items

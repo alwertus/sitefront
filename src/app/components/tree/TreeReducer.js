@@ -12,13 +12,12 @@ const defaultTreeData = [
 ];
 
 // флаг необходимости обновить дерево
-export function treeNeedUpdate(state = false, action) {
+export function treeNeedUpdate(state = true, action) {
     switch (action.type) {
         case "TREE_NEED_UPDATE":
             return action.needUpdate;
         default:
             return state;
-
     }
 }
 
@@ -26,7 +25,7 @@ export function treeNeedUpdate(state = false, action) {
 export function treeData(state = defaultTreeData, action) {
     switch (action.type) {
         case "TREE_SET_ITEMS":
-            return action.items.items;
+            return action.newValue;
         case "TREE_CHANGE_EXPANDED":
             return changeChildsExpand(state, action.id, action.newValue);
         default:

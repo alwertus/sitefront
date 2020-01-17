@@ -1,15 +1,14 @@
 cls
-rem npm run build
 set front_folder=%~dp0
-cd %front_folder%/../siteback/
+
+cd %front_folder%/../digimem/src/main/resources/
 set back_folder=%CD%\
-rem set back_folder=d:\Alwertus\Project\Java\Projects\Teaching\siteback\
 
 cd %front_folder%
 
-RD /S /Q %back_folder%html
-mkdir %back_folder%html
-xcopy /s %front_folder%build\* %back_folder%html
+RD /S /Q %back_folder%static
+mkdir %back_folder%static
+xcopy /s %front_folder%build\* %back_folder%static
 
 echo Success !!!
 :end

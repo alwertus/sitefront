@@ -9,11 +9,11 @@ export function setTreeHasError (newValue)     { return { type: "TREE_HAS_ERROR"
 export function treeItemsFetchData() {
     return (dispatch) => {
         dispatch(setTreeIsLoading(true));
-        fetch('/info', {
+        fetch('InfoPageList', {
             method: 'POST',
             headers: {'Content-Type': 'application/json;charset=utf-8'},
             body: JSON.stringify({
-                operation: "getInfoList"/*,
+                operation: "show"/*,
                 userLoginAs: localStorage.getItem("userName") == null ? "" : localStorage.getItem("userName"),
                 sessionString: localStorage.getItem("userSession") == null ? "" : localStorage.getItem("userSession")*/
             })})
@@ -27,7 +27,6 @@ export function treeItemsFetchData() {
             })
             .then((response) => response.json())
             .then((items) => {
-                console.log("get items: ", items);
                 dispatch(setNewTree(items));
 
             })

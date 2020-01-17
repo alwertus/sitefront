@@ -17,6 +17,11 @@ class TreeComponent extends Component {
 
     render() {
         // console.log("ALL TREE: ", this.props.treeData);
+
+        if (this.props.treeNeedUpdate) {
+            this.props.treeItemsFetchData();
+        }
+
         return <div className="tree-wrapper">
             <p>My Tree</p>
             <div className="tree-controls-line">
@@ -77,7 +82,8 @@ class TreeComponent extends Component {
 const mapStateToProps = (state) => {
     return {
         treeData: state.treeData,
-        activePage: state.treeActivePage
+        activePage: state.treeActivePage,
+        treeNeedUpdate: state.treeNeedUpdate
         // userLogin: state.userLogin,
     };
 };

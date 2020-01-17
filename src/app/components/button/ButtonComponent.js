@@ -15,7 +15,7 @@ class ButtonComponent extends Component {
         return <div>
             <input id="input-str1" className="tmp-input" name="string1" type="text" placeholder="Строка 1" onChange={this.onChange}/>
             <input id="input-str2" className="tmp-input" name="string2" type="text" placeholder="Строка 2" onChange={this.onChange}/>
-            <button className="tmp-button" onClick={this.onButtonClick}>Go</button>
+            <button className="tmp-button" onClick={this.onButtonClick}>Go(method=add)</button>
             <br/>
             <button className="tmp-button" onClick={this.onButton2Click}>Refresh</button>
         </div>
@@ -27,12 +27,13 @@ class ButtonComponent extends Component {
             headers: {'Content-Type': 'application/json;charset=utf-8'},
             body: JSON.stringify({
                 operation: "add",
-                string1: this.props.buttonString1,
-                string2: this.props.buttonString2
+                title: this.props.buttonString1,
+                parent: this.props.buttonString2
             })})
             .then((response) => response.json())
             .then((response) => {
-                console.log("<< response 1", JSON.stringify(response));
+                // console.log("<< response 1", JSON.stringify(response));
+                console.log("<< response 1", response);
                 return response;
             })
             .catch(() => {
@@ -47,8 +48,8 @@ class ButtonComponent extends Component {
             headers: {'Content-Type': 'application/json;charset=utf-8'},
             body: JSON.stringify({
                 operation: "show",
-                string1: this.props.buttonString1,
-                string2: this.props.buttonString2
+                title: this.props.buttonString1,
+                parent: this.props.buttonString2
             })})
             .then((response) => response.json())
             .then((response) => {

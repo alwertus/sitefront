@@ -1,5 +1,5 @@
 npm run build
-rm -r ../siteback/html
-cp -R build ../siteback
-mv ../siteback/build ../siteback/html
+rm -r ../digimem/src/main/resources/static
+cp -R build ../digimem/src/main/resources
+mv ../digimem/src/main/resources/build ../digimem/src/main/resources/static
 echo move files to server ... Success!

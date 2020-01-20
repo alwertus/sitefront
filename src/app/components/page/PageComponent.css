@@ -1,0 +1,10 @@
+.infopage {
+    border: 1px solid #a59b9b;
+    width: 100%;
+}
+.infopage-controlpanel {
+    border: 1px solid black;
+}
+.infopage-content {
+    border: 1px solid blue;
+}

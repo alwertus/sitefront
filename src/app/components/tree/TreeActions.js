@@ -5,6 +5,7 @@ export function setTreeNeedUpdate (newValue)   { return { type: "TREE_NEED_UPDAT
 export function setTreeIsLoading (newValue)    { return { type: "TREE_IS_LOADING",      newValue: newValue } }
 export function setTreeHasError (newValue)     { return { type: "TREE_HAS_ERROR",       newValue: newValue } }
 export function setTreeAddElement_ShowDialog (newValue) { return { type: "TREE_ADD_DIALOG_SHOW", newValue: newValue } }
+export function setPageData_NeedUpdate (newValue) { return { type: "SET_PAGE_DATA_NEED_UPDATE",      newValue:     newValue } }
 
 export function treeItemsFetchData() {
     return (dispatch) => {

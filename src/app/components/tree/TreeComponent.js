@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import "./TreeComponent.css";
 import TreeElement from "./element/TreeElement";
 import TreeButton from "./element/TreeButton";
-import { setTreeExpanded, setTreeActivePage, treeItemsFetchData, setTreeAddElement_ShowDialog, sendDelRecord } from "./TreeActions";
+import { setTreeExpanded, setTreeActivePage, treeItemsFetchData, setTreeAddElement_ShowDialog, sendDelRecord, setPageData_NeedUpdate } from "./TreeActions";
 import AddComponent from "./add/AddComponent";
 
 class TreeComponent extends Component {
@@ -84,7 +84,10 @@ class TreeComponent extends Component {
     onMenuClick(id) {
         var t = this;
         return function() {
-            if (t !== undefined) t.props.setActivePage(id);
+            if (t !== undefined) {
+                t.props.setActivePage(id);
+                t.props.setPageData_NeedUpdate(true);
+            }
         }
     }
 }
@@ -108,7 +111,8 @@ const mapDispatchToProps = (dispatch) => {
         changeExpand: (id, value) => dispatch(setTreeExpanded(id, value)),
         treeItemsFetchData: () => dispatch(treeItemsFetchData()),
         setTreeAddElement_ShowDialog: (val) => dispatch(setTreeAddElement_ShowDialog(val)),
-        sendDelRecord: (val) => dispatch(sendDelRecord(val))
+        sendDelRecord: (val) => dispatch(sendDelRecord(val)),
+        setPageData_NeedUpdate: (val) => dispatch(setPageData_NeedUpdate(val))
     };
 };
 

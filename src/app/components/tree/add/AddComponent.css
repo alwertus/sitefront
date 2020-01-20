@@ -1,0 +1,19 @@
+.tree-add-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 4px 10px 8px;
+    background-color: #c9e4c7;
+    padding: 4px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.tree-add-buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+.tree-add-input {
+    margin: 4px 0 4px 0;
+}
+.tree-add-button {
+    margin-left: 4px;
+}

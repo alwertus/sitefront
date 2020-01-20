@@ -34,7 +34,7 @@ function getExpandedElement(id, isExpanded, childrens, onClick ) {
     if ( isExpanded === undefined ||
          childrens  === undefined ||
          onClick    === undefined )
-            return null;
+            return <div/>;
     return isExpanded ? <div className="expanded-button open" onClick={onClick(id, isExpanded)}>-</div> :
                         <div className="expanded-button close" onClick={onClick(id, isExpanded)}>+</div>
 }

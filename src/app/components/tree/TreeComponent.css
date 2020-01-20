@@ -7,7 +7,8 @@
                                     border-radius:      6px;
                                     margin:             2px 0;
                                     padding:            2px 0 2px 5px;
-                                    display:            flex; }
+                                    display:            flex;
+                                    justify-content:    space-between;}
 .tree-node-line.active          {   background-color:   #c9f53f; }
 .tree-node-line:not(.active)    {   background-color:   #dedede; }
 .expanded-button                {   display:            inline; }
@@ -26,3 +27,5 @@
                                     text-align:         center; }
 .tree-button#btn-add {              background-color:   #96e89d;}
 .tree-button#btn-remove {           background-color:   #ffbabd;}
+.disabled {                         pointer-events: none;
+                                    opacity: 0.3;   }

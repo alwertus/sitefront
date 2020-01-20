@@ -55,3 +55,13 @@ export function treeActivePage(state = "", action) {
             return state;
     }
 }
+
+// флаг видимости окна добавления записи
+export function treeAddElement_ShowDialog(state = false, action) {
+    switch (action.type) {
+        case "TREE_ADD_DIALOG_SHOW":
+            return action.newValue;
+        default:
+            return state;
+    }
+}

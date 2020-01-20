@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import "./TreeComponent.css";
 import TreeElement from "./element/TreeElement";
 import TreeButton from "./element/TreeButton";
-import { setTreeExpanded, setTreeActivePage, treeItemsFetchData } from "./TreeActions";
+import { setTreeExpanded, setTreeActivePage, treeItemsFetchData, setTreeAddElement_ShowDialog, sendDelRecord } from "./TreeActions";
+import AddComponent from "./add/AddComponent";
 
 class TreeComponent extends Component {
 
@@ -24,23 +25,33 @@ class TreeComponent extends Component {
 
         return <div className="tree-wrapper">
             <p>My Tree</p>
-            <div className="tree-controls-line">
+            <div className={ "tree-controls-line" + this.disable_class() }>
                 <TreeButton title="-" id="btn-remove" onClick={this.onBtnRemoveClick}/>
                 <TreeButton title="+" id="btn-add" onClick={this.onBtnAddClick}/>
             </div>
-            { this.props.treeData.map((item) => (<TreeElement key={item.id}
-                                                              element={item}
-                                                              onExpandClick={this.onExpandClick}
-                                                              onMenuClick={this.onMenuClick}
-                                                              activeMenu={this.props.activePage}/>)) }
+            { this.addDialog() }
+            <div className={ "tree-list" + this.disable_class() }>
+                { this.props.treeData.map((item) => (<TreeElement key={item.id}
+                                                                  element={item}
+                                                                  onExpandClick={this.onExpandClick}
+                                                                  onMenuClick={this.onMenuClick}
+                                                                  activeMenu={this.props.activePage}/>)) }
+            </div>
         </div>;
     }
+
+    addDialog() {
+        return this.props.treeAddElement_ShowDialog ? <AddComponent/> : <div/>;
+    }
+
+    disable_class() { return this.props.treeAddElement_ShowDialog ? " disabled" : "" };
 
     // onClick button ADD
     onBtnAddClick() {
         var t = this;
         return function() {
             console.log("onButtonAddClick");
+            t.props.setTreeAddElement_ShowDialog(true);
             t.props.treeItemsFetchData();
         }
     }
@@ -55,7 +66,7 @@ class TreeComponent extends Component {
             }
 
             if (window.confirm("Действительно удалить выбранную страницу?")) {
-                console.log("try delete ", t.props.activePage);
+                t.props.sendDelRecord(t.props.activePage);
             }
         }
     }
@@ -83,7 +94,8 @@ const mapStateToProps = (state) => {
     return {
         treeData: state.treeData,
         activePage: state.treeActivePage,
-        treeNeedUpdate: state.treeNeedUpdate
+        treeNeedUpdate: state.treeNeedUpdate,
+        treeAddElement_ShowDialog: state.treeAddElement_ShowDialog
         // userLogin: state.userLogin,
     };
 };
@@ -94,7 +106,9 @@ const mapDispatchToProps = (dispatch) => {
         //changeUserPassw: (val) => dispatch(changeUserPassw(val))
         setActivePage: (val) => dispatch(setTreeActivePage(val)),
         changeExpand: (id, value) => dispatch(setTreeExpanded(id, value)),
-        treeItemsFetchData: () => dispatch(treeItemsFetchData())
+        treeItemsFetchData: () => dispatch(treeItemsFetchData()),
+        setTreeAddElement_ShowDialog: (val) => dispatch(setTreeAddElement_ShowDialog(val)),
+        sendDelRecord: (val) => dispatch(sendDelRecord(val))
     };
 };
 

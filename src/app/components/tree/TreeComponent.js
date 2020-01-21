@@ -2,7 +2,7 @@ import React, { Component} from "react";
 import { connect } from "react-redux";
 import "./TreeComponent.css";
 import TreeElement from "./element/TreeElement";
-import TreeButton from "./element/TreeButton";
+import ButtonControl from "../button_control/ButtonControl";
 import { setTreeExpanded, setTreeActivePage, treeItemsFetchData, setTreeAddElement_ShowDialog, sendDelRecord, setPageData_NeedUpdate } from "./TreeActions";
 import AddComponent from "./add/AddComponent";
 
@@ -24,10 +24,9 @@ class TreeComponent extends Component {
         }
 
         return <div className="tree-wrapper">
-            <p>My Tree</p>
             <div className={ "tree-controls-line" + this.disable_class() }>
-                <TreeButton title="-" id="btn-remove" onClick={this.onBtnRemoveClick}/>
-                <TreeButton title="+" id="btn-add" onClick={this.onBtnAddClick}/>
+                <ButtonControl title="+" id="btn-add" onClick={this.onBtnAddClick}/>
+                <ButtonControl title="-" id="btn-remove" onClick={this.onBtnRemoveClick}/>
             </div>
             { this.addDialog() }
             <div className={ "tree-list" + this.disable_class() }>

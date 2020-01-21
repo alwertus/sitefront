@@ -1,0 +1,6 @@
+.infopage-controlpanel {
+    border: 1px solid black;
+    display: flex;
+    justify-content: flex-start;
+    padding: 4px 0 4px 0;
+}

@@ -4,7 +4,7 @@ import { userLogin, userPassw, userName, userSession, userIsLoading, userErrorTe
 import { treeData, treeActivePage, treeNeedUpdate, treeAddElement_ShowDialog } from "../components/tree/TreeReducer";
 import { buttonString1, buttonString2 } from "../components/button/ButtonReducer";
 import { treeAddElement_Title } from "../components/tree/add/AddReducer";
-import { pageData, pageDataNeedUpdate } from "../components/page/PageReducer";
+import { pageData, pageTempData, pageDataNeedUpdate, pageEditMode } from "../components/page/PageReducer";
 
 
 // набор "чистых функций"
@@ -33,5 +33,7 @@ export default combineReducers({
     treeAddElement_Title,
 
     pageData,
-    pageDataNeedUpdate
+    pageTempData,
+    pageDataNeedUpdate,
+    pageEditMode
 });

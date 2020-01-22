@@ -27,6 +27,7 @@ export default () => (
             <li>1/1</li>
             <li>2/2</li>
             <li>3/3</li>
+            <li>4/4</li>
         </ul>
         <ButtonComponent/>
     </Provider>

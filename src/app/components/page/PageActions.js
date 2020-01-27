@@ -2,8 +2,22 @@ export function setPageData (newValue) { return { type: "SET_PAGE_DATA",      ne
 export function setPageData_NeedUpdate (newValue) { return { type: "SET_PAGE_DATA_NEED_UPDATE",      newValue:     newValue } }
 export function setPageTempData (newValue) { return { type: "SET_PAGE_TEMP_DATA",      newValue:     newValue } }
 
+const errorPage = "Connection error";
 const emptyPage = "<div>N<b>o</b> page</div>";
-const errorPage = "<div>Connection error</div>";
+/*const emptyPage="<div>\n" +
+    "<ul>\n" +
+    "<li><b>Арифметические операции</b><div><br>\n" +
+    "  Есть 4 операции: сложение <span class='red'>+</span>, вычитание <font color=\"red\">-</font>, умножение <font color=\"red\">*</font>, деление <font color=\"red\">/</font><br>\n" +
+    "  <code>SELECT 10*15 FROM DUAL;\n" +
+    "govno <span class='red bold'>jopa</span> her</code></div>\n" +
+    "</li>\n" +
+    "<li>Неопределенное значение (NULL)</li>\n" +
+    "<li>Определение псевдонимов столбцов</li>\n" +
+    "<li>Оператор конкатенации (||)</li>\n" +
+    "<li>Дедубликация строк (DISTINCT)</li>\n" +
+    "<li>Вывод структуры таблицы (DESCRIBE)</li>\n" +
+    "</ul>\n" +
+    "</div>";*/
 
 export function pageData_GetFromServer (id) {
     // return { type: "GET_PAGE_DATA",      newValue:     newValue }

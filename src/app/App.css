@@ -18,12 +18,12 @@ body {
     justify-content: space-between;
     background-color: rgba(62, 140, 42, 0.74)
 }
-
+/*
 ul {
     margin: 0;
     padding: 0;
 }
-
+*/
 .content-container {
     display: flex;
     justify-content: space-between;

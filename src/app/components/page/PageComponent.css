@@ -12,6 +12,7 @@
     flex: 1 1;
     padding: 4px 12px 10px 4px;
     display: flex;
+    overflow: scroll;
 }
 
 .infopage-content>textarea {
@@ -24,12 +25,22 @@ span.red {
 span.bold {
     font-weight: bold;
 }
+span.blue {
+    color: blue;
+}
+span.gray {
+    color: gray;
+}
+td {
+    border: 1px solid #bfbfbf;
+    padding: 1px 4px;
+}
 code {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
     padding: 5px;
     background-color: #ecf1cb;
     white-space: pre;
-    display: block;
+    display: inline-block;
     border: 1px solid #b7b7b7;
     border-radius: 4px;
 }

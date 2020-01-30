@@ -3,27 +3,11 @@
     src: local('MainFont'), url(./fonts/vetka.otf) format('opentype');
 }
 
-body {
-    margin: 8px 0;
-    background-color: #eaeaea;
-}
-
-.pagelist-container, .login-container {
-    /*border: 1px solid black;*/
-}
-
 .header {
-    /*border: 1px solid red;*/
     display: flex;
     justify-content: space-between;
     background-color: rgba(62, 140, 42, 0.74)
 }
-/*
-ul {
-    margin: 0;
-    padding: 0;
-}
-*/
 .content-container {
     display: flex;
     justify-content: space-between;

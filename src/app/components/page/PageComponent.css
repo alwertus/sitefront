@@ -38,7 +38,7 @@ td {
 code {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
     padding: 5px;
-    background-color: #ecf1cb;
+    background-color: #ececec;
     white-space: pre;
     display: inline-block;
     border: 1px solid #b7b7b7;
@@ -48,3 +48,17 @@ ul {
     margin-block-start: 0;
     margin-block-end: 0;
 }
+h2 {
+    color: #940000;
+}
+li.center {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+}
+img {
+    margin-right: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.33);
+}
+
+

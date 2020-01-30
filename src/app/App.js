@@ -4,7 +4,7 @@ import configureStore from "./store/ConfigureStore";
 import PageListComponent from "./components/pagelist/PageListComponent";
 import LoginComponent from "./components/login/LoginComponent";
 import TreeComponent from "./components/tree/TreeComponent";
-import ButtonComponent from "./components/button/ButtonComponent";
+// import ButtonComponent from "./components/button/ButtonComponent";
 import PageComponent from "./components/page/PageComponent";
 import "./App.css";
 
@@ -20,7 +20,7 @@ export default () => (
             <TreeComponent/>
             <PageComponent/>
         </div>
-
+        {/*
         <hr/>
         <p>Тестовые логин/пароль:</p>
         <ul>
@@ -30,5 +30,6 @@ export default () => (
             <li>4/4</li>
         </ul>
         <ButtonComponent/>
+        */}
     </Provider>
 );

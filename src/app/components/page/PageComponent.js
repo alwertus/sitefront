@@ -29,11 +29,11 @@ class PageComponent extends Component {
         return <div className="infopage">
 
             <PageControlPanelComponent/>
-
-            {this.props.pageEditMode
-                ? <div className="infopage-content"><textarea value={this.props.pageTempData} onChange={this.onTextChange}/></div>
-                : <div className="infopage-content" dangerouslySetInnerHTML={{__html:  this.props.pageData}}/> }
-
+            <div className="infopage-content-wrapper">
+                {this.props.pageEditMode
+                    ? <div className="infopage-content"><textarea value={this.props.pageTempData} onChange={this.onTextChange}/></div>
+                    : <div className="infopage-content" dangerouslySetInnerHTML={{__html:  this.props.pageData}}/> }
+            </div>
         </div>
     }
 }

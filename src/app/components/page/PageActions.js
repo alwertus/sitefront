@@ -3,8 +3,8 @@ export function setPageData_NeedUpdate (newValue) { return { type: "SET_PAGE_DAT
 export function setPageTempData (newValue) { return { type: "SET_PAGE_TEMP_DATA",      newValue:     newValue } }
 
 const errorPage = "Connection error";
-// const emptyPage = "<div>N<b>o</b> page</div>";
-const emptyPage="<div><ul>\n" +
+const emptyPage = "<div>N<b>o</b> page</div>";
+/*const emptyPage="<div><ul>\n" +
     "<li><h2>Условия сравнения</h2>\n" +
     "  Равно <code>=</code>, Меньше<code><</code>Больше<code>></code>Меньше или равно<code><=</code>Больше или равно<code>>=</code>Меньше или равно<code>>= <> != ^= ¬=</code></li>\n" +
     "\n" +
@@ -56,7 +56,7 @@ const emptyPage="<div><ul>\n" +
     "</li>\n" +
     "\n" +
     "</ul>\n" +
-    "</div>";
+    "</div>";*/
 
 export function pageData_GetFromServer (id) {
     // return { type: "GET_PAGE_DATA",      newValue:     newValue }

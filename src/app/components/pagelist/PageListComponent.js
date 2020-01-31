@@ -1,15 +1,35 @@
 import React, { Component} from "react";
 import { connect } from "react-redux";
 import { itemsFetchData } from "./PageListActions";
+import { withRouter } from 'react-router-dom';
 import "./PageListComponent.css";
 
 class PageListComponent extends Component {
+    constructor(props) {
+        super(props);
+        this.onClick_Info = this.onClick_Info.bind(this);
+        this.onClick_Home = this.onClick_Home.bind(this);
+    }
+
     componentDidMount() {
         this.props.fetchData();
     }
 
+    onClick_Info = () => {
+        this.props.history.push('/info')
+    }
+    onClick_Home = () => {
+        this.props.history.push('/')
+    }
+
     render() {
-        if (this.props.hasError) {
+        return (
+            <div className="pagelist-wrapper">
+                <div className="pagelist-item" onClick={this.onClick_Home}>Дом</div>
+                <div className="pagelist-item" onClick={this.onClick_Info}>Инфа</div>
+            </div>
+        );
+        /*if (this.props.hasError) {
             return <div className="pagelist-wrapper">
                 <p>Error loading</p>
             </div>;
@@ -33,7 +53,7 @@ class PageListComponent extends Component {
                     </div>
                 ))}
             </div>
-        );
+        );*/
     }
 }
 
@@ -52,4 +72,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PageListComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PageListComponent));

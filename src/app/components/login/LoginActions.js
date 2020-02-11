@@ -9,13 +9,13 @@ export function pageListNeedUpdate    (newValue) { return { type: "PAGELIST_UPDA
 export function signIn(dispatch, userLogin, userPassw) {
     dispatch(setUserLoading(true));
 
-    fetch('/auth', {
+    fetch('/login', {
         method: 'POST',
         headers: {'Content-Type': 'application/json;charset=utf-8'},
         body: JSON.stringify({
             operation: "login",
-            userLogin: userLogin,
-            userPass: userPassw
+            login: userLogin,
+            password: userPassw
         })})
         .then((response) => response.json())
         .then((response) => {

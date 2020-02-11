@@ -3,7 +3,8 @@
                                 border-radius:      8px;
                                 margin:             0 0 0 5px;
                                 min-width:          20px;
-                                text-align:         center; }
+                                text-align:         center;
+                                box-shadow:         0 0 10px rgba(0, 0, 0, 0.35); }
 .button-control#btn-add     {   background-color:   #96e89d;}
 .button-control#btn-remove  {   background-color:   #ffbabd;}
 .button-control#btn-edit    {   background-color:   #a4baff;}
